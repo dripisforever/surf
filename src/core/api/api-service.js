@@ -1,6 +1,6 @@
 import request from 'superagent';
-// import { API_MOVIES_URL, CLIENT_ID_PARAM } from '../constants';
-import { API_TRACKS_URL, CLIENT_ID_PARAM, PAGINATION_PARAMS } from '../constants';
+import { API_MOVIES_URL, CLIENT_ID_PARAM, PAGINATION_PARAMS } from '../constants';
+// import { API_TRACKS_URL, CLIENT_ID_PARAM, PAGINATION_PARAMS } from '../constants';
 
 export const api = {
   fetch(url) {
@@ -10,8 +10,8 @@ export const api = {
   fetchSearchResults(query) {
     return dispatch({
       paginate: true,
-      query: `q=${query}`,
-      url: API_TRACKS_URL
+      query: `query=${query}`,
+      url: API_MOVIES_URL
     });
   },
 };
@@ -19,7 +19,6 @@ export const api = {
 
 export function dispatch(options) {
   return request[options.method || 'get'](requestUrl(options))
-    .set('Accept', 'application/json')
     .then(response => response.body);
 }
 

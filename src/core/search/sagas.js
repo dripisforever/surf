@@ -1,5 +1,5 @@
 import { call, fork, select, take, takeLatest } from 'redux-saga/effects';
-import { fetchSearchResults } from '../api/sagas';
+import { fetchSearchResults } from '../api';
 import history from '../history';
 import { getTracklistById } from '../tracklists';
 import { searchActions } from './actions';

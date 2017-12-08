@@ -12,10 +12,10 @@ export class TrackCard extends React.Component {
   render() {
     const {track} = this.props
     return (
-      <div>
-        <div className="track-card__username">
+      <div className="no-no">
+        {/* <div className="track-card__username">
           <Link to={`/users/${track.userId}/tracks`}>{track.username}</Link>
-        </div>
+        </div> */}
 
         <h1 className="track-card__title">{track.title}</h1>
       </div>

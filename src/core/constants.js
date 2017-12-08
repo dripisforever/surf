@@ -7,25 +7,25 @@ export const APP_NAME = 'soundcloud-redux';
 //=====================================
 //  API
 //-------------------------------------
-export const API_BASE_URL = 'https://api.soundcloud.com';
-export const API_TRACKS_URL = `${API_BASE_URL}/tracks`;
-
-export const CLIENT_ID = process.env.REACT_APP_SOUNDCLOUD_CLIENT_ID || 'd02c42795f3bcac39f84eee0ae384b00';
+// export const API_BASE_URL = 'https://api.soundcloud.com';
+// export const API_TRACKS_URL = `${API_BASE_URL}/tracks`;
+//
+// export const CLIENT_ID = process.env.REACT_APP_SOUNDCLOUD_CLIENT_ID || 'd02c42795f3bcac39f84eee0ae384b00';
 
 //=====================================
 //  API
 //-------------------------------------
-// export const API_BASE_URL = 'http://api.themoviedb.org/3/search/';
-// export const API_MOVIES_URL = `${API_BASE_URL}/movie`;
-// export const API_USERS_URL = `${API_BASE_URL}/users`;
-//
-// export const CLIENT_ID = process.env.REACT_APP_SOUNDCLOUD_CLIENT_ID || 'b6cd56bf94f8f8f33f48689d00174b5b';
+export const API_BASE_URL = 'http://api.themoviedb.org/3/search';
+export const API_MOVIES_URL = `${API_BASE_URL}/movie`;
+export const API_USERS_URL = `${API_BASE_URL}/users`;
+
+export const CLIENT_ID = process.env.REACT_APP_SOUNDCLOUD_CLIENT_ID || 'b6cd56bf94f8f8f33f48689d00174b5b';
 
 
 
-export const CLIENT_ID_PARAM = `client_id=${CLIENT_ID}`;
+export const CLIENT_ID_PARAM = `api_key=${CLIENT_ID}`;
 
-export const PAGINATION_LIMIT = 60;
+export const PAGINATION_LIMIT = 10;
 export const PAGINATION_PARAMS = `limit=${PAGINATION_LIMIT}&linked_partitioning=1`;
 
 
@@ -54,7 +54,7 @@ export const FEATURED_TRACKLIST_USER_ID = 185676792;
 
 export const SESSION_TRACKLIST_ID = 'session';
 
-export const TRACKS_PER_PAGE = 12;
+export const TRACKS_PER_PAGE = 10;
 
 
 //=====================================

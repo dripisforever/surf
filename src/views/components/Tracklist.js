@@ -9,14 +9,13 @@ import PropTypes from 'prop-types';
 import { getCurrentTracklist, getTracksForCurrentTracklist, tracklistActions } from '../../core/tracklists';
 
 // import LoadingIndicator from '../loading-indicator';
-import TrackCard from './track-card';
+import TrackCard from './TrackCard';
 
 // import './tracklist.css';
 
 
 export class Tracklist extends React.Component {
   static propTypes = {
-    tracklistId: PropTypes.string.isRequired,
     tracks: PropTypes.instanceOf(List).isRequired
   };
 
@@ -37,8 +36,8 @@ export class Tracklist extends React.Component {
       //
       // </div>
 
-      <div>
-        <div>{this.renderTrackCards()}</div>
+      <div className="Woah">
+        <div className="Boo">{this.renderTrackCards()}</div>
         <div>{this.props.isPending ? <h1>LOADING RESULTS</h1> : null}</div>
         {this.props.hasNextPage ? this.renderPaginationButton() : null}
       </div>
@@ -52,8 +51,10 @@ export class Tracklist extends React.Component {
 //-------------------------------------
 
 const mapStateToProps = createSelector(
+  getCurrentTracklist,
   getTracksForCurrentTracklist,
-  tracks => ({
+  (tracklist, tracks) => ({
+    isPending: tracklist.isPending,
     tracks
   })
 );
