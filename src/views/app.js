@@ -14,7 +14,8 @@ import { createSelector } from 'reselect';
 
 import logo from './styles/logo.svg';
 import './styles/App.css';
-import Surf from './components/SearchBar';
+import Surf from './components/Surf';
+// import Surfbar from './components/SurfBar';
 import SearchPage from './components/SearchPage';
 import { getSearch, searchActions } from '../core/search';
 
@@ -23,10 +24,11 @@ import { getSearch, searchActions } from '../core/search';
 
 export function App({handleSearch, search, toggleSearch}) {
   return (
-    <div>
+    <div className="app-container">
 
 
       <main className="main">
+        {/* <Route exact path="/" render={(props) => ( <Surfbar handleSearch={handleSearch} search={search} /> )} /> */}
         <Route exact path="/" render={(props) => ( <Surf handleSearch={handleSearch} search={search} /> )} />
         {/* <Route exact path="/" component={Surf}/> */}
         <Route path="/search" component={SearchPage}/>

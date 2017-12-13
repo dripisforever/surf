@@ -20,8 +20,8 @@ export class Tracklist extends React.Component {
   };
 
   renderTrackCards() {
-    return this.props.tracks.map((track, index) => {
-      return <TrackCard key={index} track={track} />;
+    return this.props.tracks.map((track) => {
+      return <TrackCard key={track.id} track={track} />;
     });
   }
 
@@ -36,7 +36,7 @@ export class Tracklist extends React.Component {
       //
       // </div>
 
-      <div className="Woah">
+      <div className="Results">
         <div className="Boo">{this.renderTrackCards()}</div>
         <div>{this.props.isPending ? <h1>LOADING RESULTS</h1> : null}</div>
         {this.props.hasNextPage ? this.renderPaginationButton() : null}

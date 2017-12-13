@@ -2,10 +2,10 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 // import SearchResults from './SearchResults';
-import '../styles/SearchBar.css';
+import '../styles/SurfBar.css';
 
 import { push } from 'react-router-redux';
-class SearchBar extends React.Component {
+class SurfBar extends React.Component {
     // static contextTypes = {
     //   router: PropTypes.func.isRequired,
     // };
@@ -34,20 +34,6 @@ class SearchBar extends React.Component {
   handleQueryChange(e) {
       this.setState({query: e.target.value});
   }
-
-  // doSearch = (query) => {
-  //   return axios({
-  //     method: 'GET',
-  //     url: `http://api.themoviedb.org/3/search/movie?query=${query}&api_key=b6cd56bf94f8f8f33f48689d00174b5b`
-  //     // url: `${API_URL}/users/search?q=${term}`
-  //   })
-  //   .then(({data}) => {
-  //     this.setState({
-  //       data: data
-  //     });
-  //   });
-  // }
-
   handleSubmit(e) {
     e.preventDefault();
     const SPACE_SPLITTER = /\s+/;
@@ -65,7 +51,7 @@ class SearchBar extends React.Component {
 
   render() {
       return (
-        <div className="root-searchBar">
+        <div className="root-surfBar">
          <form className="searchForm" onSubmit={this.handleSubmit} noValidate>
           <input
               autoComplete="off"
@@ -84,4 +70,4 @@ class SearchBar extends React.Component {
   }
 }
 
-export default SearchBar;
+export default SurfBar;

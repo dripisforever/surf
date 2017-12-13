@@ -6,7 +6,9 @@ import PropTypes from 'prop-types';
 import { searchActions } from '../../core/search';
 import React from 'react';
 import Tracklist from './Tracklist';
-
+import SearchBar from './SearchBar';
+import '../styles/SearchPage.css';
+// import '../styles/TrackCard.css';
 class SearchPage extends React.Component {
     static propTypes = {
       loadSearchResults: PropTypes.func.isRequired,
@@ -36,20 +38,25 @@ class SearchPage extends React.Component {
     render() {
       return (
          <div className="salam">
+           <div className="searchBar">
+             <SearchBar handleSearch={this.props.handleSearch} query={this.props.query} />
+           </div>
+
            <Tracklist />
          </div>
       );
     }
 }
 
-const mapStateToProps =  (state, props) => {
+const mapStateToProps = (state, props) => {
   return {
     query: new URLSearchParams(props.location.search).get('q')
   };
 };
 
 const mapDispatchToProps = {
-  loadSearchResults: searchActions.loadSearchResults
+  loadSearchResults: searchActions.loadSearchResults,
+  handleSearch: searchActions.navigateToSearch
 };
 
 export default connect(
