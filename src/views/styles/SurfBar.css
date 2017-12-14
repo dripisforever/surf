@@ -10,12 +10,12 @@
 
 .root-surfBar input[type="text"] {
   border: 1px solid #f1f1f1;
-  background-color: #f3f3f3;
+  background-color: #fff;
   width: 40em;
   padding: 1px 11px;
   height: 38px;
   border-radius: 4px;
-  box-shadow: none;
+  box-shadow: 0 4px 4px rgba(0,0,0,.04);
   box-sizing: border-box;
 }
 

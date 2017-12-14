@@ -86,11 +86,6 @@ class Surf extends React.Component {
   }
 
 }
-const mapStateToProps = (state, props) => {
-  return {
-    query: new URLSearchParams(props.location.search).get('q')
-  };
-};
 
 Surf.propTypes = {
   handleSearch: PropTypes.func.isRequired,
