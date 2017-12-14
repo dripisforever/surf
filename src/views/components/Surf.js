@@ -7,13 +7,13 @@ import axios from 'axios';
 import SurfBar from './SurfBar';
 import SearchResultsList from './surf/SearchResultsList';
 // import './app-header.css';
-
+import {API_MOVIES_URL} from '../../core/constants';
 
 class Surf extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { preventHideDropdown: false, showDropdown: false, term: '', posts: [], users: [], tags: [] }
+    this.state = { preventHideDropdown: false, showDropdown: false, term: [], posts: [], users: [], tags: [] }
     this.hideDropdown = this.hideDropdown.bind(this);
     this.showDropdown = this.showDropdown.bind(this);
     this.setPreventHideDropdown = this.setPreventHideDropdown.bind(this);
@@ -24,7 +24,7 @@ class Surf extends React.Component {
     this.setState({ term });
     return axios({
       method: 'GET',
-      url: `http://views-api.herokuapp.com/api/users/search?q=${term}`
+      url: `${API_MOVIES_URL}?q=${term}`
       // url: `${API_URL}/users/search?q=${term}`
     })
     .then(({data}) => {

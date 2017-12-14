@@ -30,9 +30,12 @@ class SurfBar extends React.Component {
     this.handleQueryChange = this.handleQueryChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  handleQueryChange(e) {
-      this.setState({query: e.target.value});
+  componentDidMount() {
+    this.input.focus();
+  }
+  handleQueryChange(term) {
+      this.setState({query: term});
+      this.props.onSearchTermChange(term);
   }
   handleSubmit(e) {
     e.preventDefault();
@@ -54,13 +57,15 @@ class SurfBar extends React.Component {
         <div className="root-surfBar">
          <form className="searchForm" onSubmit={this.handleSubmit} noValidate>
           <input
+              onFocus={() => this.props.showDropdown()}
+              onBlur={() => this.props.hideDropdown()}
               autoComplete="off"
               type="text"
               name="query"
               ref={e => this.input = e}
               placeholder="Search for a movie..."
               value={this.state.query}
-              onChange={this.handleQueryChange}
+              onChange={event => this.handleQueryChange(event.target.value)}
           />
 
          </form>
