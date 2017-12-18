@@ -1,3 +1,80 @@
+span, a {
+    color: black;
+    text-decoration: none;
+    width: 520px;
+    /*padding-right: 27em;*/
+    padding: 1px;
+    font-weight: bold;
+}
+li {
+  width: 502px;
+  padding-left: 18px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+/*a:hover, a:active {
+    background-color: #262626;
+}*/
+li:active, li:hover {
+    background-color: #f7f7f7;
+    /*padding-right: 520px;*/
+}
+img.SALAM {
+    height: 30px;
+    position: relative;
+    left: 36em;
+    top: 2em;
+}
+.surf-search__main {
+    background-color: white;
+}
 ul#autocomplete-items {
-    margin-left: 30em;
+  border-radius: 4px;
+  margin-left: 25em;
+  margin-top: 340px;
+  box-shadow: 0 4px 4px rgba(0,0,0,.08);
+  position: absolute;
+  list-style: none;
+  padding-top: 6px;
+  padding-right: 220px;
+  padding-bottom: 6px;
+  padding-left: 0px;
+  width: 300px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  z-index: 20;
+  display: block;
+  /*li {
+    padding: 4px 10px;
+    a {
+      text-decoration: none;
+      color: $light-font-color;
+      font-size: 12px;
+      padding: 3px 0 !important;
+      overflow: hidden;
+      &:hover {
+        background-color: #ffffff;
+        color: $font-black;
+      }
+    }
+  }
+  .avatar-image {
+    margin-right: 5px;
+  }
+  .fa-search {
+    margin-right: 5px;
+  }
+  .autocomplete-heading {
+    padding-bottom: 0;
+    h4 {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: $font-black;
+      border-bottom: 1px solid $light-border-color;
+      margin: 0;
+      padding-bottom: 6px;
+    }
+  }*/
 }

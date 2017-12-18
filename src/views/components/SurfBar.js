@@ -35,7 +35,14 @@ class SurfBar extends React.Component {
   }
   handleQueryChange(term) {
       this.setState({query: term});
-      this.props.onSearchTermChange(term);
+
+
+      if (!this.input.value || this.input.value.length < 0) {
+          return;
+      } else {
+        this.props.onSearchTermChange(term);
+      }
+
   }
   handleSubmit(e) {
     e.preventDefault();
@@ -63,7 +70,7 @@ class SurfBar extends React.Component {
               type="text"
               name="query"
               ref={e => this.input = e}
-              placeholder="Search for a movie..."
+              placeholder="Surf..."
               value={this.state.query}
               onChange={event => this.handleQueryChange(event.target.value)}
           />
