@@ -1,5 +1,5 @@
 .root-surfBar {
-  margin-top: 20em;
+  margin-top: 17em;
   margin-left: 25em;
 }
 
@@ -11,12 +11,15 @@
 .root-surfBar input[type="text"] {
   border: 1px solid #f1f1f1;
   background-color: #fff;
-  width: 40em;
+  width: 522px;
   padding: 1px 11px;
   height: 38px;
   border-radius: 4px;
-  box-shadow: 0 4px 4px rgba(0,0,0,.04);
+  box-shadow: 0 10px 41px -2px #e2e2e2;
+  height: 44px;
+  /*box-shadow: 0 4px 4px rgba(0,0,0,.04);*/
   box-sizing: border-box;
+  font-size: 17px;
 }
 
 .root-surfBar input:focus, textarea:focus, select:focus {
@@ -33,10 +36,6 @@
   margin-bottom: 0;
 }
 
-ul#autocomplete-items {
-    margin-left: 30em;
-    margin-top: 23em;
-}
 .root-surfBar button {
     border: none;
     margin-left: 0px;
@@ -168,50 +167,6 @@ i.fa.fa-search {
     outline: none;
     background-color: #fff;
     border-bottom: 1px solid $light-border-color;
-  }
-}
-
-ul#autocomplete-items {
-  position: absolute;
-  list-style: none;
-  padding: 6px 8px;
-  width: 300px;
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 3px;
-  z-index: 20;
-  display: block;
-  li {
-    padding: 4px 10px;
-    a {
-      text-decoration: none;
-      color: $light-font-color;
-      font-size: 12px;
-      padding: 3px 0 !important;
-      overflow: hidden;
-      &:hover {
-        background-color: #ffffff;
-        color: $font-black;
-      }
-    }
-  }
-  .avatar-image {
-    margin-right: 5px;
-  }
-  .fa-search {
-    margin-right: 5px;
-  }
-  .autocomplete-heading {
-    padding-bottom: 0;
-    h4 {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: $font-black;
-      border-bottom: 1px solid $light-border-color;
-      margin: 0;
-      padding-bottom: 6px;
-    }
   }
 }
 

@@ -1,4 +1,17 @@
 .salam {
     margin-left: 20em;
-    
+
+}
+
+
+
+img.Logo {
+    width: 100px
+
+}
+
+.logo {
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 7em;
 }

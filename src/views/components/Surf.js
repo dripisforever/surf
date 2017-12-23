@@ -5,10 +5,10 @@ import axios from 'axios';
 // import Icon from '../icon';
 // import IconButton from '../icon-button';
 import SurfBar from './SurfBar';
-import SearchResultsList from './surf/SearchResultsList';
+import SurfResultsList from './surf-autocomplete/SurfResultsList';
 // import './app-header.css';
 import {API_MOVIES_URL} from '../../core/constants';
-
+import '../styles/SurfBar.css';
 class Surf extends React.Component {
   constructor(props) {
     super(props)
@@ -21,6 +21,9 @@ class Surf extends React.Component {
   }
 
   search(term) {
+    if (!term || term.length <= 0) {
+        return;
+    }
     this.setState({ term });
     return axios({
       method: 'GET',
@@ -55,8 +58,12 @@ class Surf extends React.Component {
 
   render() {
     const { handleSearch, search } = this.props;
+    const logoUrl = require(`../images/black-views-logo.png`);
     return (
-      <div className="Surf">
+      <div className="sypher">
+        <div className="surf-search__main">
+          <Link to="/feed" className="Header__logo-link"><img className="SALAM" src={logoUrl} alt="img"/></Link>
+        </div>
         <SurfBar
           handleSearch={handleSearch}
           search={search}
@@ -71,12 +78,15 @@ class Surf extends React.Component {
   }
 
   renderSearchResults() {
+    // if (!query || query.length < 0) {
+    //     return;
+    // }
     if(!this.state.showDropdown ||  this.state.users.length === 0 ) {
       return;
     }
 
     return (
-      <SearchResultsList
+      <SurfResultsList
         setPreventHideDropdown={this.setPreventHideDropdown}
         resetPreventHideDropdown={this.resetPreventHideDropdown}
         term={this.state.term}

@@ -30,9 +30,17 @@ class SearchBar extends React.Component {
     this.handleQueryChange = this.handleQueryChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  componentDidMount() {
+    this.props.hideDropdown();
+  }
+  handleQueryChange(term) {
+      this.setState({query: term});
 
-  handleQueryChange(e) {
-      this.setState({query: e.target.value});
+      if (!this.input.value || this.input.value.length < 0) {
+          return;
+      } else {
+        this.props.onSearchTermChange(term);
+      }
   }
 
   // doSearch = (query) => {
@@ -68,13 +76,15 @@ class SearchBar extends React.Component {
         <div className="root-searchBar">
          <form className="searchForm" onSubmit={this.handleSubmit} noValidate>
           <input
+            onFocus={() => this.props.showDropdown()}
+            onBlur={() => this.props.hideDropdown()}
               autoComplete="off"
               type="text"
               name="query"
               ref={e => this.input = e}
               placeholder="Search for a movie..."
               value={this.state.query}
-              onChange={this.handleQueryChange}
+              onChange={event => this.handleQueryChange(event.target.value)}
           />
 
          </form>

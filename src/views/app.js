@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -8,6 +8,7 @@ import {
   Route,
   Link,
   Redirect,
+  Switch,
   withRouter
 } from 'react-router-dom'
 import { createSelector } from 'reselect';
@@ -16,9 +17,13 @@ import logo from './styles/logo.svg';
 import './styles/App.css';
 import Surf from './components/Surf';
 // import Surfbar from './components/SurfBar';
-import SearchPage from './components/SearchPage';
-import { getSearch, searchActions } from '../core/search';
+import SearchPage from './pages/search-page';
+import SignInPage from './pages/signin-page';
 
+import UserPage from './pages/user-page';
+// import FeedPage from './pages/feed-page';
+import { getSearch, searchActions } from '../core/search';
+// import requireAuth from './requireAuth';
 
 
 
@@ -28,10 +33,13 @@ export function App({handleSearch, search, toggleSearch}) {
 
 
       <main className="main">
-        {/* <Route exact path="/" render={(props) => ( <Surfbar handleSearch={handleSearch} search={search} /> )} /> */}
-        <Route exact path="/" render={(props) => ( <Surf handleSearch={handleSearch} search={search} /> )} />
-        {/* <Route exact path="/" component={Surf}/> */}
-        <Route path="/search" component={SearchPage}/>
+        <Switch>
+          <Route exact path="/" render={(props) => ( <Surf handleSearch={handleSearch} search={search} /> )} />
+          <Route path="/search"    component={SearchPage} />
+
+          <Route path="/signin"    component={SignInPage} />
+          <Route path="/:username" component={UserPage} />
+        </Switch>
       </main>
 
     </div>
