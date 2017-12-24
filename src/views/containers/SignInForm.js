@@ -1,7 +1,8 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
 import { userSignIn } from '../actions';
-import { getAuthErrors, getIsAuthenticating } from '../store/rootReducer';
+import { getAuthErrors, getIsAuthenticating } from '../../core/reducers';
+import { connect } from 'react-redux'
 // import ErrorMessages from '../components/ErrorMessages';
 import '../styles/SignInForm.css';
 
@@ -74,12 +75,17 @@ const validate = (values) => {
 }
 
 const mapStateToProps = (state) => ({
-  errorMessages: getAuthErrors(state),
+  // errorMessages: getAuthErrors(state),
   isAuthenticating: getIsAuthenticating(state),
 });
 
-export default reduxForm({
+const connected = connect(mapStateToProps, { userSignIn })(SignInForm)
+
+const formed =  reduxForm({
   form: 'SignIn',
   fields: ['email', 'password'],
   validate,
-}, mapStateToProps, { userSignIn })(SignInForm);
+}
+)(connected);
+
+export default formed

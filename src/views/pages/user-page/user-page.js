@@ -28,10 +28,10 @@ import {
   getIsFetchingPublicProfile,
   getPublicProfileErrors,
   getCurrentUser,
-  getCurrentUsersFollowingIds,
+  // getCurrentUsersFollowingIds,
   // getIsFetchingPosts,
   getPaginationByUsername
-} from '../../store/rootReducer';
+} from '../../../core/reducers';
 import { getAvatarUrl, pluralize } from '../../utils/helpers';
 import '../../styles/UserPage.css';
 
@@ -232,7 +232,7 @@ class UserPage extends React.Component {
 const mapStateToProps = (state, {match}) => {
   const user = getPublicProfileByUsername(state, match.params.username);
   const currentUser = getCurrentUser(state);
-  const currentUserFollowingIds = getCurrentUsersFollowingIds(state);
+  // const currentUserFollowingIds = getCurrentUsersFollowingIds(state);
   return {
     user,
     // posts: getPostsByUsername(state, match.params.username),

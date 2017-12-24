@@ -7,7 +7,7 @@ import {
   FETCH_POSTS_BY_USERNAME_SUCCESS,
   FETCH_POSTS_BY_USERNAME_FAILURE
 } from '../actionTypes';
-import { getAuthToken, getPaginationByUsername } from '../../store/rootReducer';
+import { getAuthToken, getPaginationByUsername } from '../../../core/reducers';
 import { API_URL } from '../../config/constants';
 
 export const fetchPublicProfile = (username) => (dispatch, getState) => {

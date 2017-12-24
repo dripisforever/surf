@@ -1,19 +1,3 @@
-// import React from 'react';
-// class SignInPage extends React.Component  {
-//     constructor(props) {
-//       super(props);
-//     }
-//     render() {
-//       const { match } = this.props;
-//       return (
-//         <div>bro, {match.params.username} </div>
-//       );
-//     }
-//
-// }
-//
-// export default SignInPage;
-
 import React from 'react';
 import SignInForm from '../../containers/SignInForm';
 // import FacebookLoginButton from '../../containers/FacebookLoginButton';

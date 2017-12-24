@@ -1,5 +1,6 @@
 
 import React from 'react';
+import history from '../../../core/history';
 // import { getAvatarUrl } from '../utils/helpers';
 class SurfWebsiteListItem extends React.Component {
   render() {

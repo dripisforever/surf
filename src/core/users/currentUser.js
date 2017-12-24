@@ -14,7 +14,7 @@ import {
   FOLLOW_USER,
   UNFOLLOW_USER,
   START_FOLLOWING_NOTIFICATION_RECEIVED,
-} from '../actions/actionTypes';
+} from '../../views/actions/actionTypes';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
 const initialState = {
@@ -25,9 +25,9 @@ const initialState = {
   followerIds: [],
   followingIds: [],
   attributes: {},
-  // errors: {
-  //   auth: [],
-  // },
+  errors: {
+    auth: [],
+  },
   isAuthenticating: false,
   isLoggingWithFB: false,
 };
@@ -114,6 +114,8 @@ const currentUser = (state = initialState, action) => {
   }
 };
 
+export default currentUser;
+
 /*** Selectors ***/
 export const getCurrentUser = (state) => {
   return state.attributes;
@@ -146,5 +148,3 @@ export const getIsAuthenticating = (state) => {
 export const getIsLoggingInWithFB = (state) => {
   return state.isLoggingWithFB;
 };
-
-export default currentUser;

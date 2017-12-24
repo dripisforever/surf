@@ -27,7 +27,7 @@ import { getSearch, searchActions } from '../core/search';
 
 
 
-export function App({handleSearch, search, toggleSearch}) {
+export const App = ({handleSearch, search, toggleSearch}) => {
   return (
     <div className="app-container">
 

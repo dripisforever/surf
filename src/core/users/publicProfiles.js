@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux';
+import { LOCATION_CHANGE } from 'react-router-redux';
+
 import {
   FETCH_PUBLIC_PROFILE_START,
   FETCH_PUBLIC_PROFILE_SUCCESS,
@@ -6,8 +8,7 @@ import {
   FETCH_POSTS_BY_USERNAME_SUCCESS,
   FOLLOW_USER,
   UNFOLLOW_USER
-} from '../actions/actionTypes'
-import { LOCATION_CHANGE } from 'react-router-redux';
+} from '../../views/actions/actionTypes';
 
 const initialState = {
   allUsernames: [],

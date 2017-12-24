@@ -1,6 +1,6 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import reducers from './reducers';
+import rootReducer from './reducers';
 import sagas from './sagas';
 
 
@@ -15,7 +15,7 @@ export default function configureStore() {
     }
   }
 
-  const store = createStore(reducers, middleware);
+  const store = createStore(rootReducer, middleware);
   sagaMiddleware.run(sagas);
 
   if (module.hot) {
