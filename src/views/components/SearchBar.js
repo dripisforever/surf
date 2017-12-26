@@ -2,7 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 // import SearchResults from './SearchResults';
-import '../styles/SearchBar.css';
+// import '../styles/SearchBar.css';
+import '../styles/search.css';
 
 import { push } from 'react-router-redux';
 class SearchBar extends React.Component {
