@@ -30,9 +30,11 @@ class SurfBar extends React.Component {
     this.handleQueryChange = this.handleQueryChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  
   componentDidMount() {
     this.input.focus();
   }
+
   handleQueryChange(term) {
       this.setState({query: term});
 
@@ -44,6 +46,7 @@ class SurfBar extends React.Component {
       }
 
   }
+
   handleSubmit(e) {
     e.preventDefault();
     const SPACE_SPLITTER = /\s+/;
