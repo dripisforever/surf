@@ -6,11 +6,11 @@ span, a {
     padding: 1px;
     font-weight: bold;
 }
-li {
-  width: 502px;
+li.search_query--name {
+  /* width: 441px; */
   padding-left: 18px;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  /* padding-top: 4px; */
+  /* padding-bottom: 4px; */
   cursor: default;
 }
 /*a:hover, a:active {
@@ -24,26 +24,26 @@ li:active, li:hover {
 img.SALAM {
     height: 30px;
     position: relative;
-    left: 36em;
+    /* left: 36em; */
     top: 2em;
 }
-.surf-search__main {
+/* .surf-search__main {
     background-color: white;
-}
+} */
 ul#autocomplete-items {
   border-radius: 4px;
-  margin-left: 25em;
-  /* margin-top: 321px; */
-  margin-top: 340px;
+  /* margin-left: 250px; */
+  margin-top: 321px;
+  /* margin-top: 340px; */
   box-shadow: 0 10px 41px -2px #e2e2e2;
   box-shadow: 0 4px 4px rgba(0,0,0,.08);
   position: absolute;
   list-style: none;
   padding-top: 6px;
-  padding-right: 220px;
+  /* padding-right: 220px; */
   padding-bottom: 6px;
   padding-left: 0px;
-  width: 300px;
+  /* width: 48%; */
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 6px;

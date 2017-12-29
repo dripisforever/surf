@@ -13,7 +13,7 @@ class SurfUserListItem extends React.Component {
   render() {
     return (
       // <li onClick={() => history.push(`search?q=${this.props.user.username}`)}>
-      <li onClick={this.navigate}>
+      <li className="search_query--name"onClick={this.navigate}>
         {/* <a href={`/search?q=${this.props.user.username}`}> */}
           {/* <div className="avatar-image" style={{backgroundImage: `url(${getAvatarUrl(this.props.user.avatarUrl)})`, backgroundSize: 'cover'}}> */}
             {/* <img width="35" className="avatar-image" src={getAvatarUrl(this.props.user.avatarUrl)} alt={`${this.props.user.username} avatar`} /> */}

@@ -1,58 +1,66 @@
-import React from 'react';
-import { reduxForm } from 'redux-form';
+import React, {Component} from 'react';
+import { reduxForm, Field } from 'redux-form';
+
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import {reset} from 'redux-form';
+
+// import history from '../../../core/history';
 import { userSignIn } from '../actions';
 import { getAuthErrors, getIsAuthenticating } from '../../core/reducers';
-import { connect } from 'react-redux'
+import { loginRequest } from '../../core/login/actions';
 // import ErrorMessages from '../components/ErrorMessages';
 import '../styles/SignInForm.css';
 
-class SignInForm extends React.Component {
+class SignInForm extends Component {
 
-  renderError(field) {
-    if (field.touched && field.error) {
-      return (
-        <span className="SignInForm__error-text">
-          {field.error}
-        </span>
-      );
-    }
-  }
-
+  // renderError(field) {
+  //   if (field.touched && field.error) {
+  //     return (
+  //       <span className="SignInForm__error-text">
+  //         {field.error}
+  //       </span>
+  //     );
+  //   }
+  // }
   render() {
     const {
-        fields: { email, password },
+        // fields: { email, password },
         handleSubmit,
         userSignIn,
-        isAuthenticating
+        isAuthenticating,
+        pristine,
+        submitting,
+        token
       } = this.props;
+
+    if (token) {
+      // history.push(`${this.props.currentUser.username}`);
+      return <Redirect to="/"/>;
+    }
     return (
-      <form className="SignInForm__root" onSubmit={handleSubmit(userSignIn)}>
+      <form className="SignInForm__root" onSubmit={handleSubmit}>
+        <label>Username</label>
         <fieldset>
-          <input
+          <Field
+            name="username"
             type="text"
-            placeholder="Email"
-            className="SignInForm__input"
-            {...email}
+            id="username"
+            component="input"
+            className="SignUpForm__input"
           />
-          {this.renderError(email)}
         </fieldset>
+        <label>Password</label>
         <fieldset>
-          <input
-            type="password"
-            placeholder="Password"
-            className="SignInForm__input"
-            {...password}
+          <Field
+          name="password"
+          type="password"
+          id="password"
+          component="input"
+          className="SignUpForm__input"
           />
-          {this.renderError(password)}
         </fieldset>
-        <button
-          className="SignInForm__button"
-          disabled={this.props.invalid || isAuthenticating}
-          type="submit">
-          {isAuthenticating ?
-          <i className="fa fa-spinner fa-pulse fa-3x fa-fw SignInForm__spinner" /> :
-          'Log In'}
-        </button>
+        <button className="SignUpForm__button"action="submit" >Login</button>
         {/* <ErrorMessages messages={this.props.errorMessages} /> */}
       </form>
     );
@@ -74,18 +82,38 @@ const validate = (values) => {
   return errors;
 }
 
-const mapStateToProps = (state) => ({
-  // errorMessages: getAuthErrors(state),
-  isAuthenticating: getIsAuthenticating(state),
-});
+// const mapStateToProps = (state) => ({
+//   // errorMessages: getAuthErrors(state),
+//   isAuthenticating: getIsAuthenticating(state),
+// });
 
-const connected = connect(mapStateToProps, { userSignIn })(SignInForm)
+// const connected = connect(mapStateToProps, { userSignIn })(SignInForm)
+//
+// const formed =  reduxForm({
+//   form: 'login',
+//   fields: ['email', 'password'],
+//   validate,
+// }
+// )(connected);
 
-const formed =  reduxForm({
-  form: 'SignIn',
-  fields: ['email', 'password'],
-  validate,
-}
-)(connected);
+const formed = reduxForm({
+    form: 'SignInForm',
+    // fields: ['email', 'password'],
+})(SignInForm)
 
-export default formed
+const connected = connect(
+  state => ({
+      login: state.login,
+      token: state.client.token
+  }),
+
+  dispatch => ({
+    // reduxForm() expects the component to have an onSubmit
+    // prop. You could also pass this from a parent component.
+    // I want to dispatch a redux action.
+    onSubmit: data => dispatch(loginRequest(data)),
+
+  })
+)(formed)
+
+export default connected

@@ -16,11 +16,9 @@ import { createSelector } from 'reselect';
 import logo from './styles/logo.svg';
 import './styles/App.css';
 import Surf from './components/Surf';
-// import Surfbar from './components/SurfBar';
 import SearchPage from './pages/search-page';
 import SignInPage from './pages/signin-page';
-
-import UserPage from './pages/user-page';
+import UserPage   from './pages/user-page';
 // import FeedPage from './pages/feed-page';
 import { getSearch, searchActions } from '../core/search';
 // import requireAuth from './requireAuth';

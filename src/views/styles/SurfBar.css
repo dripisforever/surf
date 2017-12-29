@@ -1,17 +1,22 @@
 .root-surfBar {
   margin-top: 17em;
-  margin-left: 25em;
+  /* margin-left: 25em; */
 }
-
+input.woah:focus {
+  border: none;
+}
 .searchBar {
     /*margin-top: 1em;*/
     margin-left: 0em;
 }
-
+a.Header__logo-link {
+  margin-left: 33%;
+}
 .root-surfBar input[type="text"] {
   border: 1px solid #f1f1f1;
   background-color: #fff;
-  width: 522px;
+  /* width: 522px; */
+  widows: 100%;
   padding: 1px 11px;
   height: 38px;
   border-radius: 4px;
@@ -28,7 +33,7 @@
 }
 .root-surfBar {
     position: absolute;
-    margin-left: 25em;
+    /* margin-left: 25em; */
     display: block;
 
 }
@@ -44,6 +49,7 @@
 .root-surfBar input[type="text"] {
   border: 1px solid #f1f1f1;
   background-color: #fdfdfd;
+  width: 100%;
   /*width: 177px;
   padding: 10px 60px;*/
   /*width: 15em;*/
@@ -64,7 +70,7 @@ i.fa.fa-search {
   .root-surfBar form {
     padding: 0;
     margin-top: 5px;
-    margin-right: 10px;
+    /* margin-right: 10px; */
     border: none;
     @include border-radius($button);
 

@@ -18,10 +18,10 @@ a.val:active, a.val:hover {
     /*padding-right: 520px;*/
 }
 li {
-  width: 502px;
+  /* width: 502px; */
   padding-left: 18px;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  /* padding-top: 4px; */
+  /* padding-bottom: 4px; */
   cursor: default;
 }
 /*a:hover, a:active {
@@ -35,12 +35,12 @@ li:active, li:hover {
 img.SALAM {
     height: 30px;
     position: relative;
-    left: 36em;
+    /* left: 36em; */
     top: 2em;
 }
-.surf-search__main {
+/* .surf-search__main {
     background-color: white;
-}
+} */
 div#alo-autocomplete-items {
   border-radius: 4px;
   /*margin-left: 17em;*/
@@ -50,7 +50,7 @@ div#alo-autocomplete-items {
   position: absolute;
   list-style: none;
   padding-top: 6px;
-  padding-right: 220px;
+  /* padding-right: 220px; */
   padding-bottom: 6px;
   padding-left: 0px;
   width: 300px;
@@ -58,6 +58,7 @@ div#alo-autocomplete-items {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 6px;
   z-index: 20;
+  top: 64px;
   display: list-item;
   /*li {
     padding: 4px 10px;

@@ -3,6 +3,9 @@ import { combineReducers } from 'redux';
 import { searchReducer } from './search';
 import { tracksReducer } from './tracks';
 import { tracklistsReducer } from './tracklists';
+import {reducer as form} from 'redux-form';
+import { loginReducer } from './login/';
+import { clientReducer } from './client/reducer'
 // import { currentUser } from './users/currentUser';
 // import { publicProfiles } from './users/publicProfiles';
 import currentUser, * as fromCurrentUser from './users/currentUser';
@@ -11,12 +14,14 @@ import publicProfiles, * as fromPublicProfiles from './users/publicProfiles';
 import { USER_SIGN_OUT } from '../views/actions/actionTypes';
 
 const appReducer = combineReducers({
-
+  form,
+  client: clientReducer,
+  login: loginReducer,
   search: searchReducer,
   tracks: tracksReducer,
   tracklists: tracklistsReducer,
-  currentUser,
-  publicProfiles
+  currentUser: currentUser,
+  publicProfiles: publicProfiles
 });
 
 const rootReducer = (state, action) => {

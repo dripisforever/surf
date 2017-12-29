@@ -64,7 +64,7 @@ export const FEATURED_TRACKLIST_USER_ID = 185676792;
 
 export const SESSION_TRACKLIST_ID = 'session';
 
-export const TRACKS_PER_PAGE = 10;
+export const TRACKS_PER_PAGE = 5;
 
 
 //=====================================

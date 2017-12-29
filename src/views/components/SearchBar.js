@@ -83,7 +83,7 @@ class SearchBar extends React.Component {
               type="text"
               name="query"
               ref={e => this.input = e}
-              placeholder="Search for a movie..."
+              // placeholder="Search for a movie..."
               value={this.state.query}
               onChange={event => this.handleQueryChange(event.target.value)}
           />

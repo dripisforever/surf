@@ -60,9 +60,9 @@ class Surf extends React.Component {
     const { handleSearch, search } = this.props;
     const logoUrl = require(`../images/black-views-logo.png`);
     return (
-      <div className="sypher">
-        <div className="surf-search__main">
-          <Link to="/feed" className="Header__logo-link"><img className="SALAM" src={logoUrl} alt="img"/></Link>
+      <div className="sypher container">
+        <div className="six columns offset-by-three surf-search__main">
+          <Link to="/" className="Header__logo-link"><img className="SALAM" src={logoUrl} alt="img"/></Link>
         </div>
         <SurfBar
           handleSearch={handleSearch}

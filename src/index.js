@@ -8,14 +8,15 @@ import App from './views/app';
 import registerServiceWorker from './registerServiceWorker';
 import configureStore from './core/store';
 import history from './core/history';
-
+import './views/styles/vendors/normalize.css';
+import './views/styles/vendors/skeleton.css';
 const store = configureStore();
 
 function render(Component) {
   ReactDOM.render(
     <Provider store={store}>
         <Router history={history}>
-          <div>
+          <div style={{minHeight: `100vh`}}>
             <Component/>
           </div>
         </Router>

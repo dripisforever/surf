@@ -14,13 +14,13 @@ import Spinner from '../../components/Spinner';
 // import PhotoGrid from '../../containers/PhotoGrid';
 // import UsersModalContainer from '../../containers/UsersModalContainer';
 
-import NotFoundPage from './NotFoundPage';
+// import NotFoundPage from './NotFoundPage';
 import {
   userSignOut,
   fetchPublicProfile,
   // fetchPostsByUsername,
-  followUser,
-  unfollowUser,
+  // followUser,
+  // unfollowUser,
 } from '../../actions';
 import {
   getPublicProfileByUsername,
@@ -52,7 +52,7 @@ class UserPage extends React.Component {
     this.closeUsersModal = () => this.setState({ usersModalIsOpen: false });
     this.openNewPostModal = () => this.setState({ newPostModalIsOpen: true });
     this.closeNewPostModal = () => this.setState({ newPostModalIsOpen: false });
-    this.enableEndlessScroll = this._enableEndlessScroll.bind(this);
+    // this.enableEndlessScroll = this._enableEndlessScroll.bind(this);
     // this.handleScroll = this._handleScroll.bind(this);
     this.resetState = () => this.setState({
       logoutModalIsOpen: false,
@@ -65,14 +65,14 @@ class UserPage extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchPublicProfile(this.props.params.username);
+    this.props.fetchPublicProfile(this.props.match.params.username);
     // this.props.fetchPostsByUsername(this.props.params.username);
     // window.addEventListener('scroll', this.handleScroll);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.params.username !== nextProps.params.username) {
-      this.props.fetchPublicProfile(nextProps.params.username);
+    if (this.props.match.params.username !== nextProps.match.params.username) {
+      this.props.fetchPublicProfile(nextProps.match.params.username);
       // this.props.fetchPostsByUsername(nextProps.params.username);
       this.resetState();
     }
@@ -153,12 +153,16 @@ class UserPage extends React.Component {
   // }
 
   render() {
-    const { isFetching, user, errors } = this.props;
+    const { isFetching, user } = this.props;
 
-    if (isFetching === false && errors.length > 0) {
-      return (<NotFoundPage />);
+    if (isFetching === false) {
+      return (
+        <div>not found page</div>
+      );
     }
-
+    // if (this.props.currentUser) {
+    //   history.push(`${this.props.currentUser.username}`);
+    // }
     if (isFetching || !user) {
       return (
         <div className="Profile__spinner-container">

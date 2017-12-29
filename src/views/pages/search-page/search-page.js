@@ -11,6 +11,8 @@ import { searchActions } from '../../../core/search';
 import Tracklist from '../../components/Tracklist';
 import SearchBar from '../../components/SearchBar';
 import SearchResultsList from '../../components/search-autocomplete/SearchResultsList';
+// import Page from '../../components/pagination/Page';
+import Pagination from '../../components/pagination/Pagination';
 
 import '../../styles/SearchPage.css';
 import {API_MOVIES_URL} from '../../../core/constants';
@@ -88,7 +90,7 @@ class SearchPage extends React.Component {
       <div className="woah">
 
         <div className="logo">
-          <Link to="/" className="Header__logo-link"><img className="Logo" src={logoUrl} alt="img"/></Link>
+          <Link to="/" className="Header__logo"><img className="Logo" src={logoUrl} alt="img"/></Link>
         </div>
 
 
@@ -108,6 +110,8 @@ class SearchPage extends React.Component {
            </div>
 
            <Tracklist />
+
+           <div className="pagination"><Pagination/></div>
         </div>
 
        </div>

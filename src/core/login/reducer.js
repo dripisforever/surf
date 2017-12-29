@@ -9,9 +9,10 @@ const initialState = {
   successful: false,
   messages: [],
   errors: [],
+  redirectTo: '',
 }
 
-const reducer = function loginReducer (state = initialState, action) {
+export function loginReducer(state = initialState, action) {
   switch (action.type) {
     // Set the requesting flag and append a message to be shown
     case LOGIN_REQUESTING:
@@ -20,6 +21,7 @@ const reducer = function loginReducer (state = initialState, action) {
         successful: false,
         messages: [{ body: 'Logging in...', time: new Date() }],
         errors: [],
+        redirectTo: ''
       }
 
     // Successful?  Reset the login state.
@@ -29,6 +31,7 @@ const reducer = function loginReducer (state = initialState, action) {
         messages: [],
         requesting: false,
         successful: true,
+        redirectTo: '/dashboard',
       }
 
     // Append the error returned from our api
@@ -42,6 +45,7 @@ const reducer = function loginReducer (state = initialState, action) {
         messages: [],
         requesting: false,
         successful: false,
+        redirectTo: ''
       }
 
     default:
@@ -49,4 +53,4 @@ const reducer = function loginReducer (state = initialState, action) {
   }
 }
 
-export default reducer;
+// export default loginReducer;
