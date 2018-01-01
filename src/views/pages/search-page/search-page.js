@@ -87,14 +87,14 @@ class SearchPage extends React.Component {
   render() {
     const logoUrl = require(`../../images/black-views-logo.png`);
     return (
-      <div className="woah">
+      <div className="search__results-page container">
 
-        <div className="logo">
+        <div className="views__logo container">
           <Link to="/" className="Header__logo"><img className="Logo" src={logoUrl} alt="img"/></Link>
         </div>
 
 
-        <div className="salam">
+        <div className="salam row">
 
            <div className="searchBar">
 

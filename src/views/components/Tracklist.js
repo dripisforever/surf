@@ -37,7 +37,7 @@ export class Tracklist extends React.Component {
       // </div>
 
       <div className="Results">
-        <div className="Boo">{this.renderTrackCards()}</div>
+        {this.renderTrackCards()}
         <div>{this.props.isPending ? <h1>LOADING RESULTS</h1> : null}</div>
         {this.props.hasNextPage ? this.renderPaginationButton() : null}
       </div>

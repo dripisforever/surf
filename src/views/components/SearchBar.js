@@ -78,7 +78,7 @@ class SearchBar extends React.Component {
          <form className="searchForm" onSubmit={this.handleSubmit} noValidate>
           <input
             onFocus={() => this.props.showDropdown()}
-            onBlur={() => this.props.hideDropdown()}
+            // onBlur={() => this.props.hideDropdown()}
               autoComplete="off"
               type="text"
               name="query"

@@ -42,16 +42,65 @@
   box-sizing: border-box; }
 
 /* For devices larger than 400px */
-@media (min-width: 400px) {
+@media (min-width: 320px) {
+  div#alo-autocomplete-items {
+    width: 100%;
+    margin-top: 2em;
+  }
+
+  .track-block {
+    padding-bottom: 10em;
+  }
+
+  button.track-card__btn {
+    margin-left: 0;
+    margin-top: 5em;
+
+  }
+  span.value {
+    margin-left: 1em;
+    width: 94%;
+  }
+
+  span.track-card__views {
+    margin-left: 3em;
+    margin-top: 65px;
+    position: absolute;
+    width: 0;
+  }
+
+  a.val:hover {
+    width: 100%;
+  }
+
   .container {
-    width: 85%;
+    width: 86%;
     padding: 0;
+  }
+  /* .searchBar input[type="text"] {
+    width: 100%;
+  } */
+  a.Header__logo-link {
+    margin-left: 29%;
+  }
+
+  a.Header__logo {
+    margin-left: 40%;
+  }
+  .views__logo.container {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 1em;
   }
 }
 
-@media (min-width: 320px) {
+@media (min-width: 400px) {
   .main-searchbar {
     margin-left: 3em;
+  }
+
+  a.Header__logo-link {
+    margin-left: 33%;
   }
 }
 @media (min-width: 425px) {
@@ -61,14 +110,23 @@
 }
 /* For devices larger than 550px */
 @media (min-width: 550px) {
+  a.Header__logo-link {
+    margin-left: 29%;
+  }
+  /* div.six.columns.offset-by-three.root-surfBar {
+    width:  100%;
+  } */
   .container {
-    width: 80%; }
+    width: 80%;
+  }
   .column,
   .columns {
-    margin-left: 4%; }
+    margin-left: 4%;
+  }
   .column:first-child,
   .columns:first-child {
-    margin-left: 0; }
+    margin-left: 0;
+  }
 
   .one.column,
   .one.columns                    { width: 4.66666666667%; }
@@ -424,10 +482,57 @@ there.
 @media (min-width: 550px) {}
 
 /* Larger than tablet */
-@media (min-width: 750px) {}
+@media (min-width: 750px) {
+  .views__logo.container {
+    margin-left: auto;
+    /* width: 100%; */
+    margin-right: auto;
+    margin-top: 1em;
+  }
+}
 
 /* Larger than desktop */
-@media (min-width: 1000px) {}
+@media (min-width: 1024px) {
+  div#alo-autocomplete-items {
+    width: 50%;
+    margin-top: 0;
+  }
+  .container {
+    width: 100%;
+  }
+  button.track-card__btn {
+    margin-left: 45%;
+    margin-top: 0;
+  }
+  span.track-card__views {
+    color: #a3a4bd;
+    cursor: pointer;
+    /* margin-top: -12px; */
+    margin-top: 11px;
+
+    position: absolute;
+    margin-left: 50%;
+    width: 0%;
+  }
+  a.Header__logo {
+    margin-left: 0;
+  }
+  .views__logo.container {
+    margin-top: 25px;
+    position: absolute;
+    width: 10%;
+  }
+  .searchBar {
+    margin: 0 auto;
+    margin-left: 10em;
+    width: 50%;
+  }
+  .Results {
+    margin: 0 auto;
+    margin-left: 10em;
+    width: 50%;
+  }
+}
 
 /* Larger than Desktop HD */
 @media (min-width: 1200px) {}

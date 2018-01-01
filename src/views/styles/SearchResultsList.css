@@ -1,11 +1,11 @@
 span.value, a.val {
     color: black;
     text-decoration: none;
-    width: 513px;
+    /* width: 513px; */
     /*padding-right: 27em;*/
     padding: 1px;
     font-weight: bold;
-    padding-left: 6px;
+    /* padding-left: 6px; */
     display: list-item;
     cursor: default;
 

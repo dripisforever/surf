@@ -1,5 +1,5 @@
 .salam {
-    margin-left: 20em;
+    /* margin-left: 10%; */
 
 }
 
@@ -9,7 +9,9 @@ img.Logo {
     width: 100px
 
 }
-
+.searchBar input[type="text"] {
+  width: 100%;
+}
 .logo {
     position: absolute;
     margin-top: 20px;

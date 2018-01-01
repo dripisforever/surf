@@ -1,6 +1,10 @@
+a.track-card__title-link {
+  text-decoration: none;
+}
 .track-block {
   margin-top: 1em;
-  width: 20em;
+  /* width: 20em; */
+  width: 100%;
   padding: 1px 11px;
   height: 38px;
   box-sizing: border-box;
@@ -28,8 +32,11 @@ span.bra {
 button.track-card__btn {
   outline: none;
   margin-top: -1em;
-  margin-left: 26em;
-  margin-right: 3em;
+  /* margin-left: 26em;
+  margin-right: 3em; */
+
+  margin-left: 90%;
+  margin-right: 0;
   border-radius: 50%;
   position: absolute;
   border: none;
@@ -63,7 +70,7 @@ span.track-card__views {
   color: #a3a4bd;
 
   cursor: pointer;
-  margin-left: 22em;
+  margin-left: 50%;
 }
 
 span.track-card__views:hover {

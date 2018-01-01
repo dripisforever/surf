@@ -37,9 +37,9 @@ function loginApi (email, password) {
     data.append('password', password)
 
     return fetch(loginUrl, {
-        method: 'POST',
-        body: data,
-      })
+      method: 'POST',
+      body: data,
+    })
     .then(handleApiErrors)
     .then(response => response.json())
     .then(function(res){
@@ -48,6 +48,7 @@ function loginApi (email, password) {
             error.response = res.message
             throw error
         }
+        console.log(res);
         return res
     })
     .catch((error) => { throw error })
@@ -61,9 +62,9 @@ function loginSocialApi(fullname, username, fid, profile_picture) {
     data.append('profile_picture', profile_picture)
 
     return fetch(loginSocialUrl, {
-        method: 'POST',
-        body: data,
-      })
+      method: 'POST',
+      body: data,
+    })
     .then(handleApiErrors)
     .then(response => response.json())
     .then(function(res){
@@ -72,6 +73,7 @@ function loginSocialApi(fullname, username, fid, profile_picture) {
             error.response = res.message
             throw error
         }
+
         return res
     })
     .catch((error) => { throw error })

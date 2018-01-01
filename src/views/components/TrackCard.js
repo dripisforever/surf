@@ -20,7 +20,7 @@ export class TrackCard extends React.Component {
 
         {/* <h1 className="track-card__title">{track.title}</h1> */}
         <div className="track-card__title">
-          <a href={`https://views.ly/${track.username}`}>
+          <a className="track-card__title-link" href={`https://views.ly/${track.username}`}>
           <span className="bra">{track.username}</span>
           {/* <span>{website.title}</span> */}
           </a>

@@ -238,7 +238,7 @@ const mapStateToProps = (state, {match}) => {
   const currentUser = getCurrentUser(state);
   // const currentUserFollowingIds = getCurrentUsersFollowingIds(state);
   return {
-    user,
+    user: user,
     // posts: getPostsByUsername(state, match.params.username),
     isFetching: getIsFetchingPublicProfile(state),
     isCurrentUser: (match.params.username === currentUser.username),
