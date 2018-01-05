@@ -15,12 +15,13 @@ import { USER_SIGN_OUT } from '../views/actions/actionTypes';
 
 const appReducer = combineReducers({
   form,
+  currentUser: currentUser,
   client: clientReducer,
   login: loginReducer,
   search: searchReducer,
   tracks: tracksReducer,
   tracklists: tracklistsReducer,
-  currentUser: currentUser,
+
   publicProfiles: publicProfiles
 });
 
@@ -41,11 +42,11 @@ export const getIsSignedIn = (state) => {
 };
 
 export const getCurrentUser = (state) => {
-  return fromCurrentUser.getCurrentUser(state.currentUser);
+  return fromCurrentUser.getCurrentUser(state.login);
 };
 
 export const getAuthToken = (state) => {
-  return fromCurrentUser.getAuthToken(state.currentUser);
+  return fromCurrentUser.getAuthToken(state.login);
 };
 
 export const getAuthErrors = (state) => {

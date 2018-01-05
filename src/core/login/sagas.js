@@ -21,10 +21,10 @@ import {
 // import {
 //   CLIENT_UNSET,
 // } from '../client/constants'
+import {loadState} from '../connectivity/localStorage';
 
 
-
-
+import history from '../history';
 
 const loginUrl = `https://views-api.herokuapp.com/api/users/signin`
 const loginSocialUrl = `${process.env.REACT_APP_API_URL}/sociallogin`
@@ -83,7 +83,7 @@ function* logout () {
     yield put(unsetClient())
     localStorage.removeItem('token')
 }
-
+const state = localStorage.viewsly;
 function* loginFlow (username, password, fullname,  fid, profile_picture) {
     let token
     try {
@@ -91,11 +91,12 @@ function* loginFlow (username, password, fullname,  fid, profile_picture) {
             token = yield call(loginSocialApi, fullname, username, fid, profile_picture)
         }else{
             token = yield call(loginApi, username, password)
+            // localStorage.setItem('viewsly', JSON.stringify(token.user))
         }
         yield put(setClient(token))
-        yield put({type: LOGIN_SUCCESS})
-        localStorage.setItem('token', JSON.stringify(token.user.authenticationToken))
-
+        yield put({type: LOGIN_SUCCESS, payload: token.user})
+        const state = loadState();
+        history.push(`/${state.login.attributes.username}`);
 
     } catch (error) {
         // error? send it to redux

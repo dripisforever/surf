@@ -6,3 +6,4 @@ export const LOGIN_ERROR = 'LOGIN_ERROR'
 export const LOGIN_OUT = 'LOGIN_OUT'
 export const SALAM = 'SALAM'
 export const PROFILE_SUCCESS = 'PROFILE_SUCCESS'
+export const USER_SIGN_OUT = 'USER_SIGN_OUT';

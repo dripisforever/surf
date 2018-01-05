@@ -10,6 +10,8 @@ const initialState = {
   messages: [],
   errors: [],
   redirectTo: '',
+
+
 }
 
 export function loginReducer(state = initialState, action) {
@@ -27,11 +29,21 @@ export function loginReducer(state = initialState, action) {
     // Successful?  Reset the login state.
     case LOGIN_SUCCESS:
       return {
-        errors: [],
-        messages: [],
-        requesting: false,
-        successful: true,
-        redirectTo: '/dashboard',
+        // errors: [],
+        // messages: [],
+        // requesting: false,
+        // successful: true,
+        // redirectTo: '/dashboard',
+        id: action.payload.id,
+        authenticationToken: action.payload.authenticationToken,
+        attributes: action.payload.attrs,
+        postIds: action.payload.postIds,
+        likedPostIds: action.payload.likedPostIds,
+        followerIds: action.payload.followerIds,
+        followingIds: action.payload.followingIds,
+        errors: initialState.errors,
+        isAuthenticating: false,
+        isLoggingWithFB: false,
       }
 
     // Append the error returned from our api

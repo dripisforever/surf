@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import ConfirmationModal from '../../components/ConfirmationModal';
+import ConfirmationModal from '../../components/ConfirmationModal';
 // import FollowButton from '../../components/FollowButton';
 // import LoadMoreButton from '../../components/LoadMoreButton';
 // import NewPostButton from '../../components/NewPostButton';
@@ -71,6 +71,7 @@ class UserPage extends React.Component {
     // })
     // this.props.dispatch({type: FETCH_PUBLIC_PROFILE_START});
     this.props.loadUser(this.props.match.params.username);
+    // this.props.loadUserPosts(this.props.match.params.username);
     // this.props.fetchPublicProfile(this.props.match.params.username);
     // this.props.fetchPostsByUsername(this.props.params.username);
     // window.addEventListener('scroll', this.handleScroll);
@@ -199,6 +200,15 @@ class UserPage extends React.Component {
             </div>
           </div>
         </div>
+        <div className="signOut">
+          <ConfirmationModal
+            isOpen={this.state.logoutModalIsOpen}
+            onRequestClose={this.closeLogoutModal}
+            onConfirmClick={this.props.logOut}
+            confirmText="Log out"
+          />
+        </div>
+
       </div>
     )
   }
@@ -211,14 +221,15 @@ const mapStateToProps = (state, {match}) => {
   return {
     user: user,
     isFetching: getIsFetchingPublicProfile(state),
-    isCurrentUser: (match.params.username === currentUser.username),
+    // isCurrentUser: (match.params.username === currentUser.username),
 
   }
 }
 const mapDispatchToProps  = {
 
-  loadUser: userActions.fetchPublicProfile
-
+  loadUser: userActions.fetchPublicProfile,
+  loadUserPosts: userActions.fetchPostsByUsername,
+  logOut: userActions.logOut
 }
 export default connect(
   mapStateToProps,

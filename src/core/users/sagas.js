@@ -19,20 +19,23 @@ import {
 import { FETCH_PUBLIC_PROFILE_SUCCESS } from './constants';
 
 import axios from 'axios';
-
-
+import {getAuthToken} from '../reducers';
+import { loadState } from '../connectivity/localStorage';
+ const state = loadState();
 
 const url = `https://views-api.herokuapp.com/api/users`
 const loginSocialUrl = `${process.env.REACT_APP_API_URL}/sociallogin`
 
-
-const profileApi = (username) => {
+// const authToken = getAuthToken(state.login);
+const profileApi = (username, headers) =>  {
 
     return axios({
       url: `${url}/${username}/public_profile`,
       method: 'GET',
       headers: {
-        'Authorization': `Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.2g8i5Jwrb1DF9CHQdUmT0LejLpezKZuZ8C8P3y0t_7I`
+        'Authorization': `Token ${headers}`
+        // 'Authorization': `Token ${state.login.authenticationToken}`
+        // 'Authorization': `Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.2g8i5Jwrb1DF9CHQdUmT0LejLpezKZuZ8C8P3y0t_7I`
       }
       // body: data,
     })
@@ -74,8 +77,10 @@ function* profileWatcher () {
     while (true) {
 
         const { username } = yield take(FETCH_PUBLIC_PROFILE_SUCCESS)
+        const headers = loadState().login.authenticationToken;
 
-        const data = yield call(profileApi, username);
+        const data = yield call(profileApi, username, headers);
+        console.log("IDET");
         yield put({type: 'PROFILE_SUCCESS', payload: data.user })
         const action = yield take([LOGIN_OUT, LOGIN_ERROR])
 

@@ -1,5 +1,6 @@
 import {
   FETCH_PUBLIC_PROFILE_SUCCESS,
+  USER_SIGN_OUT
 } from './constants';
 
 // export const fetchPublicProfile = (username) => {
@@ -22,8 +23,14 @@ export const userActions = {
       username: username,
       // id: id
     }
-  })
+  }),
 
+  logOut: () => ({
+    type: USER_SIGN_OUT
+  })
+  // fetchPostsByUsername: username => ({
+  //   type: FETCH_POSTS_BY_USERNAME,
+  // })
   // fetchProfileStart: username => ({
   //   type: FETCH_PUBLIC_PROFILE_START,
   //   username

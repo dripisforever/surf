@@ -34,12 +34,12 @@ class SignInForm extends Component {
         token
       } = this.props;
 
-    if (token) {
-      console.log(token);
-      history.push(`/`);
+    // if (token) {
+      // console.log("yeap");
+      // history.push(`/${token.user.attrs.username}`);
       // history.push(`${this.props.currentUser.username}`);
       // return <Redirect to="/"/>;
-    }
+    // }
     return (
       <form className="SignInForm__root" onSubmit={handleSubmit}>
         <label>Username</label>
