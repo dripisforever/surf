@@ -7,7 +7,8 @@ import {
   FETCH_PUBLIC_PROFILE_FAILURE,
   FETCH_POSTS_BY_USERNAME_SUCCESS,
   FOLLOW_USER,
-  UNFOLLOW_USER
+  UNFOLLOW_USER,
+  PROFILE_SUCCESS
 } from '../../views/actions/actionTypes';
 
 const initialState = {
@@ -37,6 +38,11 @@ const _user = (state = {postIds: [], pagination: {}}, action) => {
         ...state,
         ...action.payload,
       };
+    case PROFILE_SUCCESS:
+      return {
+        ...state,
+        ...action.payload,
+      }
     case FETCH_POSTS_BY_USERNAME_SUCCESS:
       return {
         ...state,
@@ -96,6 +102,11 @@ const byUsername = (state = initialState.byUsername, action) => {
       return {
         ...state,
         [action.username]: _user(state[action.username], action),
+      }
+    case PROFILE_SUCCESS:
+      return {
+        ...state,
+        [action.payload.username]: _user(state[action.username], action),
       }
     case FOLLOW_USER:
     case UNFOLLOW_USER:

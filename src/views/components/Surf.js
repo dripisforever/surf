@@ -76,7 +76,15 @@ class Surf extends React.Component {
       </div>
     )
   }
-
+  // renderUserAvatar(){
+  //   if (currentUser) {
+  //     return (
+  //       <div>
+  //         <img />
+  //       </div>
+  //     )
+  //   }
+  // }
   renderSearchResults() {
     // if (!query || query.length < 0) {
     //     return;

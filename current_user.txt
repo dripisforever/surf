@@ -1,0 +1,14 @@
+{
+  "currentUser":{
+    "id":1,
+    "authenticationToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.2g8i5Jwrb1DF9CHQdUmT0LejLpezKZuZ8C8P3y0t_7I",
+    "postIds":[19,18,29,17,1,25,27,16,12,6,2,4,9,8,28,5,24,15,30],
+    "likedPostIds":[2,1,14,13,4,5,6,3,16,15,17,7,24,19,25,9,8,31,10,30,11],
+    "followerIds":[3,2,4,9,11,12,32,13,38,40,46],
+    "followingIds":[2],
+    "attributes":{"email":"ceo@views.ly","username":"ceo","avatarUrl":"https://views-api.s3.amazonaws.com/uploads/user/avatar/1/black-logo-views.png"},
+    "errors":{"auth":[]},
+    "isAuthenticating":false,
+    "isLoggingWithFB":false
+  }
+}

@@ -18,9 +18,9 @@ import {
   unsetClient,
 } from '../client/actions'
 
-import {
-  CLIENT_UNSET,
-} from '../client/constants'
+// import {
+//   CLIENT_UNSET,
+// } from '../client/constants'
 
 
 
@@ -90,11 +90,11 @@ function* loginFlow (username, password, fullname,  fid, profile_picture) {
         if (typeof fullname !== "undefined") {
             token = yield call(loginSocialApi, fullname, username, fid, profile_picture)
         }else{
-            token = yield call (loginApi, username, password)
+            token = yield call(loginApi, username, password)
         }
         yield put(setClient(token))
         yield put({type: LOGIN_SUCCESS})
-        localStorage.setItem('token', JSON.stringify(token))
+        localStorage.setItem('token', JSON.stringify(token.user.authenticationToken))
 
 
     } catch (error) {
@@ -126,13 +126,13 @@ function* loginSocial(fullname, username, fid, profile_picture) {
 function* loginWatcher () {
     while (true) {
 
-        const { username, password, fullname, fid, profile_picture } = yield take(LOGIN_REQUESTING)
-        const task = yield fork(loginFlow, username, password, fullname,  fid, profile_picture)
+        const { username, password } = yield take(LOGIN_REQUESTING)
+        const task = yield fork(loginFlow, username, password)
         const action = yield take([LOGIN_OUT, LOGIN_ERROR])
 
         if (action.type === LOGIN_OUT) {
             yield cancel(task)
-
+            yield call(logout)
         }
 
         // yield call(logout)

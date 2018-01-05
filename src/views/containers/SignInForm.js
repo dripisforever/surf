@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import {reset} from 'redux-form';
 
-// import history from '../../../core/history';
+import history from '../../core/history';
 import { userSignIn } from '../actions';
 import { getAuthErrors, getIsAuthenticating } from '../../core/reducers';
 import { loginRequest } from '../../core/login/actions';
@@ -35,8 +35,10 @@ class SignInForm extends Component {
       } = this.props;
 
     if (token) {
+      console.log(token);
+      history.push(`/`);
       // history.push(`${this.props.currentUser.username}`);
-      return <Redirect to="/"/>;
+      // return <Redirect to="/"/>;
     }
     return (
       <form className="SignInForm__root" onSubmit={handleSubmit}>

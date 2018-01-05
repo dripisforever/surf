@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import ConfirmationModal from '../../components/ConfirmationModal';
+// import ConfirmationModal from '../../components/ConfirmationModal';
 // import FollowButton from '../../components/FollowButton';
 // import LoadMoreButton from '../../components/LoadMoreButton';
 // import NewPostButton from '../../components/NewPostButton';
 // import NewPostModal from '../../components/NewPostModal';
 import Spinner from '../../components/Spinner';
-
+import { FETCH_PUBLIC_PROFILE_START } from '../../actions/actionTypes';
 
 
 // import NotificationCardsContainer from '../../containers/NotificationCardsContainer';
@@ -15,13 +15,13 @@ import Spinner from '../../components/Spinner';
 // import UsersModalContainer from '../../containers/UsersModalContainer';
 
 // import NotFoundPage from './NotFoundPage';
-import {
-  userSignOut,
-  fetchPublicProfile,
-  // fetchPostsByUsername,
-  // followUser,
-  // unfollowUser,
-} from '../../actions';
+// import {
+//   userSignOut,
+//   fetchPublicProfile,
+//   // fetchPostsByUsername,
+//   // followUser,
+//   // unfollowUser,
+// } from '../../actions';
 import {
   getPublicProfileByUsername,
   // getPostsByUsername,
@@ -32,6 +32,7 @@ import {
   // getIsFetchingPosts,
   getPaginationByUsername
 } from '../../../core/reducers';
+import {userActions} from '../../../core/users/actions';
 import { getAvatarUrl, pluralize } from '../../utils/helpers';
 import '../../styles/UserPage.css';
 
@@ -65,7 +66,12 @@ class UserPage extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchPublicProfile(this.props.match.params.username);
+    // this.props.dispatch({
+    //   type:
+    // })
+    // this.props.dispatch({type: FETCH_PUBLIC_PROFILE_START});
+    this.props.loadUser(this.props.match.params.username);
+    // this.props.fetchPublicProfile(this.props.match.params.username);
     // this.props.fetchPostsByUsername(this.props.params.username);
     // window.addEventListener('scroll', this.handleScroll);
   }
@@ -141,25 +147,16 @@ class UserPage extends React.Component {
     }
   }
 
-  // renderUsersModal() {
-  //   return (
-  //     <UsersModalContainer
-  //       isOpen={this.state.usersModalIsOpen}
-  //       onRequestClose={this.closeUsersModal}
-  //       username={this.props.params.username}
-  //       usersType={this.state.modalUserType}
-  //     />
-  //   )
-  // }
+
 
   render() {
     const { isFetching, user } = this.props;
 
-    if (isFetching === false) {
-      return (
-        <div>not found page</div>
-      );
-    }
+    // if (isFetching === false) {
+    //   return (
+    //     <div>not found page</div>
+    //   );
+    // }
     // if (this.props.currentUser) {
     //   history.push(`${this.props.currentUser.username}`);
     // }
@@ -179,11 +176,6 @@ class UserPage extends React.Component {
         <div className="row Profile__user-info-container">
           <div className="four columns">
             <div className="Profile__avatar-img-wrapper" style={{backgroundImage: `url(${getAvatarUrl(avatarUrl)})`, backgroundSize: 'cover'}}>
-              {/* <img
-                src={getAvatarUrl(avatarUrl)}
-                className="Profile__avatar-img"
-                alt={`${username} profile`}
-              /> */}
             </div>
           </div>
           <div className="five columns">
@@ -207,27 +199,6 @@ class UserPage extends React.Component {
             </div>
           </div>
         </div>
-        {/* <PhotoGrid
-          posts={this.props.posts}
-          maxCount={(this.state.endlessScroll ? null : 9)}
-        /> */}
-        {/* <LoadMoreButton
-          show={this.props.pagination.nextPage && !this.state.endlessScroll}
-          onClick={this.enableEndlessScroll}
-        /> */}
-        {/* <NotificationCardsContainer /> */}
-        {/* <NewPostButton onClick={this.openNewPostModal}/> */}
-        {/* <NewPostModal
-          isOpen={this.state.newPostModalIsOpen}
-          onRequestClose={this.closeNewPostModal}
-        /> */}
-        <ConfirmationModal
-          isOpen={this.state.logoutModalIsOpen}
-          onRequestClose={this.closeLogoutModal}
-          onConfirmClick={this.props.userSignOut}
-          confirmText="Log out"
-        />
-        {/* {this.renderUsersModal()} */}
       </div>
     )
   }
@@ -236,26 +207,20 @@ class UserPage extends React.Component {
 const mapStateToProps = (state, {match}) => {
   const user = getPublicProfileByUsername(state, match.params.username);
   const currentUser = getCurrentUser(state);
-  // const currentUserFollowingIds = getCurrentUsersFollowingIds(state);
+
   return {
     user: user,
-    // posts: getPostsByUsername(state, match.params.username),
     isFetching: getIsFetchingPublicProfile(state),
     isCurrentUser: (match.params.username === currentUser.username),
-    // isFollowing: (currentUserFollowingIds.indexOf(user.id) >= 0),
-    // isFetchingPosts: getIsFetchingPosts(state),
-    // pagination: getPaginationByUsername(state, match.params.username),
-    // errors: getPublicProfileErrors(state),
+
   }
 }
+const mapDispatchToProps  = {
 
+  loadUser: userActions.fetchPublicProfile
+
+}
 export default connect(
   mapStateToProps,
-  {
-    userSignOut,
-    fetchPublicProfile,
-    // fetchPostsByUsername,
-    // followUser,
-    // unfollowUser
-  }
+  mapDispatchToProps
 )(UserPage);

@@ -8,7 +8,7 @@ class SurfResultsList extends React.Component {
     return (
       <ul className="six columns offset-by-three dropdown-menu" id="autocomplete-items"
         onMouseEnter={() => {this.props.setPreventHideDropdown()}}
-        // onMouseLeave={() => {this.props.resetPreventHideDropdown()}}
+        onMouseLeave={() => {this.props.resetPreventHideDropdown()}}
         >
         {/* <span className="dropdown-arrow-top"></span>
         <span className="dropdown-arrow-bottom"></span>

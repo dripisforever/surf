@@ -14,6 +14,12 @@ export const api = {
       url: API_MOVIES_URL
     });
   },
+  // 
+  // fetchUser(username) {
+  //   return dispatch({
+  //     url: `${API_USERS_URL}/${username}/public_profile`
+  //   });
+  // },
 };
 
 

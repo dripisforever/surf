@@ -69,7 +69,7 @@ class SurfBar extends React.Component {
           <input
               className="woah"
               onFocus={() => this.props.showDropdown()}
-              // onBlur={() => this.props.hideDropdown()}
+              onBlur={() => this.props.hideDropdown()}
               autoComplete="off"
               type="text"
               name="query"
