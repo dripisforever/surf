@@ -8,7 +8,8 @@ import {
   LOGIN_ERROR,
   LOGIN_OUT,
   SALAM,
-  PROFILE_SUCCESS
+  PROFILE_SUCCESS,
+  USER_SIGN_OUT
 } from './constants'
 
 import {
@@ -17,7 +18,7 @@ import {
 } from '../client/actions'
 
 import { FETCH_PUBLIC_PROFILE_SUCCESS } from './constants';
-
+import history from '../history';
 import axios from 'axios';
 import {getAuthToken} from '../reducers';
 import { loadState } from '../connectivity/localStorage';
@@ -76,7 +77,8 @@ function* profileFlow (username) {
 function* profileWatcher () {
     while (true) {
 
-        const { username } = yield take(FETCH_PUBLIC_PROFILE_SUCCESS)
+        const { username } = yield take(FETCH_PUBLIC_PROFILE_SUCCESS);
+
         const headers = loadState().login.authenticationToken;
 
         const data = yield call(profileApi, username, headers);
@@ -84,8 +86,8 @@ function* profileWatcher () {
         yield put({type: 'PROFILE_SUCCESS', payload: data.user })
         const action = yield take([LOGIN_OUT, LOGIN_ERROR])
 
-        // if (action.type === LOGIN_OUT) {
-        //     yield cancel(task)
+        // if (action.type === USER_SIGN_OUT) {
+        //   history.push('/signin');
         //
         // }
 

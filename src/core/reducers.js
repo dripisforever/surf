@@ -10,7 +10,7 @@ import { clientReducer } from './client/reducer'
 // import { publicProfiles } from './users/publicProfiles';
 import currentUser, * as fromCurrentUser from './users/currentUser';
 import publicProfiles, * as fromPublicProfiles from './users/publicProfiles';
-
+import history from './history';
 import { USER_SIGN_OUT } from '../views/actions/actionTypes';
 
 const appReducer = combineReducers({
@@ -29,6 +29,7 @@ const rootReducer = (state, action) => {
   if (action.type === USER_SIGN_OUT) {
     // Reset redux state to initialState.
     state = undefined;
+    // history.push('/signin');
   }
 
   return appReducer(state, action);
@@ -38,7 +39,7 @@ export default rootReducer;
 
 /*** Selectors ***/
 export const getIsSignedIn = (state) => {
-  return Boolean(state.currentUser.authenticationToken);
+  return Boolean(state.login.authenticationToken);
 };
 
 export const getCurrentUser = (state) => {

@@ -2,34 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ConfirmationModal from '../../components/ConfirmationModal';
-// import FollowButton from '../../components/FollowButton';
-// import LoadMoreButton from '../../components/LoadMoreButton';
-// import NewPostButton from '../../components/NewPostButton';
-// import NewPostModal from '../../components/NewPostModal';
 import Spinner from '../../components/Spinner';
 import { FETCH_PUBLIC_PROFILE_START } from '../../actions/actionTypes';
-
-
-// import NotificationCardsContainer from '../../containers/NotificationCardsContainer';
-// import PhotoGrid from '../../containers/PhotoGrid';
-// import UsersModalContainer from '../../containers/UsersModalContainer';
-
-// import NotFoundPage from './NotFoundPage';
-// import {
-//   userSignOut,
-//   fetchPublicProfile,
-//   // fetchPostsByUsername,
-//   // followUser,
-//   // unfollowUser,
-// } from '../../actions';
+import history from '../../../core/history';
 import {
   getPublicProfileByUsername,
-  // getPostsByUsername,
   getIsFetchingPublicProfile,
   getPublicProfileErrors,
   getCurrentUser,
-  // getCurrentUsersFollowingIds,
-  // getIsFetchingPosts,
   getPaginationByUsername
 } from '../../../core/reducers';
 import {userActions} from '../../../core/users/actions';
@@ -85,58 +65,12 @@ class UserPage extends React.Component {
     }
   }
 
-  // componentWillUnmount() {
-  //   window.removeEventListener('scroll', this.handleScroll);
-  // }
-
-  // _enableEndlessScroll(event) {
-  //   event.preventDefault();
-  //   // this.props.fetchPostsByUsername(this.props.params.username);
-  //   this.setState({ endlessScroll: true });
-  // }
-
   _openUsersModal(modalUserType) {
     this.setState({
       usersModalIsOpen: true,
       modalUserType,
     });
   }
-
-  // _handleScroll() {
-  //   const { scrollTop, scrollHeight } = window.document.body;
-  //   const offset = window.innerHeight * 0.8;
-  //
-  //   if (scrollHeight - scrollTop <= window.innerHeight + offset && this._shouldFetchPosts()) {
-  //     this.props.fetchPostsByUsername(this.props.params.username);
-  //   }
-  // }
-
-  // _shouldFetchPosts() {
-  //   const { isFetchingPosts, pagination: { currentPage, totalPages } } = this.props;
-  //   return (
-  //     this.state.endlessScroll &&
-  //     (!isFetchingPosts && (currentPage === null || currentPage < totalPages))
-  //   );
-  // }
-
-  // renderActionButton() {
-  //   if (this.props.isCurrentUser) {
-  //     return (
-  //       <button className="Profile__edit-button">
-  //         <Link to="/profile/edit">Edit Profile</Link>
-  //       </button>
-  //     );
-  //   } else {
-  //     const { id } = this.props.user;
-  //     return (
-  //       <FollowButton
-  //         isFollowing={this.props.isFollowing}
-  //         onFollowClick={() => this.props.followUser(id)}
-  //         onUnfollowClick={() => this.props.unfollowUser(id)}
-  //       />
-  //     );
-  //   }
-  // }
 
   renderMenuButton() {
     if (this.props.isCurrentUser) {
@@ -153,14 +87,6 @@ class UserPage extends React.Component {
   render() {
     const { isFetching, user } = this.props;
 
-    // if (isFetching === false) {
-    //   return (
-    //     <div>not found page</div>
-    //   );
-    // }
-    // if (this.props.currentUser) {
-    //   history.push(`${this.props.currentUser.username}`);
-    // }
     if (isFetching || !user) {
       return (
         <div className="Profile__spinner-container">
@@ -221,7 +147,7 @@ const mapStateToProps = (state, {match}) => {
   return {
     user: user,
     isFetching: getIsFetchingPublicProfile(state),
-    // isCurrentUser: (match.params.username === currentUser.username),
+    isCurrentUser: (match.params.username === currentUser.username),
 
   }
 }

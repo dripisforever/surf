@@ -24,7 +24,9 @@ const initialState = {
   likedPostIds: [],
   followerIds: [],
   followingIds: [],
-  attributes: {},
+  attributes: {
+    username: null
+  },
   errors: {
     auth: [],
   },

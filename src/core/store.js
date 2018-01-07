@@ -2,7 +2,7 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer from './reducers';
 import sagas from './sagas';
-import throttle from 'lodash/throttle';
+import _ from 'lodash';
 import {loadState, saveState} from './connectivity/localStorage';
 
 export default function configureStore() {
@@ -20,7 +20,7 @@ export default function configureStore() {
   const store = createStore(rootReducer, {...persistedState}, middleware);
 
 
-  store.subscribe(throttle(() => {
+  store.subscribe(_.throttle(() => {
     const state = store.getState();
       saveState({
         login: state.login,

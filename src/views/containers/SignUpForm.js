@@ -1,66 +1,82 @@
-import React from 'react';
-import { reduxForm } from 'redux-form';
-import { userSignUp } from '../actions';
-import { getAuthErrors, getIsAuthenticating } from '../store/rootReducer';
-import ErrorMessages from '../components/ErrorMessages';
-import '../styles/SignUpForm.css';
+import React, {Component} from 'react';
+import { reduxForm, Field } from 'redux-form';
 
-class SignUpForm extends React.Component {
-  renderError(field) {
-    if (field.touched && field.error) {
-      return (
-        <span className="SignUpForm__error-text">
-          {field.error}
-        </span>
-      );
-    }
-  }
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import {reset} from 'redux-form';
 
+import history from '../../core/history';
+import { userSignIn } from '../actions';
+import { getAuthErrors, getIsAuthenticating } from '../../core/reducers';
+import { loginRequest } from '../../core/login/actions';
+// import ErrorMessages from '../components/ErrorMessages';
+import '../styles/SignInForm.css';
+
+class SignUpForm extends Component {
+
+  // renderError(field) {
+  //   if (field.touched && field.error) {
+  //     return (
+  //       <span className="SignInForm__error-text">
+  //         {field.error}
+  //       </span>
+  //     );
+  //   }
+  // }
   render() {
     const {
-      fields: { email, username, password },
-      handleSubmit,
-      userSignUp,
-      isAuthenticating
-    } = this.props;
+        // fields: { email, password },
+        handleSubmit,
+        userSignIn,
+        isAuthenticating,
+        pristine,
+        submitting,
+        token
+      } = this.props;
+
+    // if (token) {
+      // console.log("yeap");
+      // history.push(`/${token.user.attrs.username}`);
+      // history.push(`${this.props.currentUser.username}`);
+      // return <Redirect to="/"/>;
+    // }
     return (
-      <form className="SignUpForm__root" onSubmit={handleSubmit(userSignUp)}>
+      <form className="SignInForm__root" onSubmit={handleSubmit}>
+        <label>Email</label>
         <fieldset>
-          <input
-            type="email"
-            placeholder="Email"
-            className="SignUpForm__input"
-            {...email}
-          />
-          {this.renderError(email)}
-        </fieldset>
-        <fieldset>
-          <input
+          <Field
+            name="email"
             type="text"
-            placeholder="Username"
+            id="email"
+            component="input"
+            autoComplete="off"
             className="SignUpForm__input"
-            {...username}
           />
-          {this.renderError(username)}
         </fieldset>
+        <label>Username</label>
         <fieldset>
-          <input
-            type="password"
-            placeholder="Create Password"
+          <Field
+            name="username"
+            type="text"
+            id="username"
+            component="input"
+            autoComplete="off"
             className="SignUpForm__input"
-            {...password}
           />
-          {this.renderError(password)}
         </fieldset>
-        <button
-          className="SignUpForm__button"
-          disabled={this.props.invalid || isAuthenticating}
-          type="submit">
-          {isAuthenticating ?
-          <i className="fa fa-spinner fa-pulse fa-3x fa-fw SignUpForm__spinner" /> :
-          'Sign Up'}
-        </button>
-        <ErrorMessages messages={this.props.errorMessages} />
+        <label>Password</label>
+        <fieldset>
+          <Field
+          name="password"
+          type="password"
+          id="password"
+          autoComplete="off"
+          component="input"
+          className="SignUpForm__input"
+          />
+        </fieldset>
+        <button className="SignUpForm__button"action="submit" >Sign Up</button>
+        {/* <ErrorMessages messages={this.props.errorMessages} /> */}
       </form>
     );
   }
@@ -74,32 +90,45 @@ const validate = (values) => {
     errors.email = 'Invalid email address';
   }
 
-  if (!values.username) {
-    errors.username = 'Username is required';
-  } else if (values.username.length < 4) {
-    errors.username = 'Username is too short (minimum 3 characters)';
-  } else if (values.username.length > 30) {
-    errors.username = 'Username is too long (maximum 30 characters)';
-  } else if (!/^[A-Z0-9_-]{3,30}$/i.test(values.username)) {
-     errors.username = 'Username should be one word (- and _ allowed)'
-  } // Add uniqueness
-
   if (!values.password) {
     errors.password = 'Password is required';
-  } else if (values.password.length < 8) {
-    errors.password = 'Password is too short (minimum 8 characters)';
   }
 
   return errors;
 }
 
-const mapStateToProps = (state) => ({
-  errorMessages: getAuthErrors(state),
-  isAuthenticating: getIsAuthenticating(state),
-});
+// const mapStateToProps = (state) => ({
+//   // errorMessages: getAuthErrors(state),
+//   isAuthenticating: getIsAuthenticating(state),
+// });
 
-export default reduxForm({
-  form: 'SignUp',
-  fields: ['email', 'username', 'password'],
-  validate,
-}, mapStateToProps, { userSignUp })(SignUpForm);
+// const connected = connect(mapStateToProps, { userSignIn })(SignInForm)
+//
+// const formed =  reduxForm({
+//   form: 'login',
+//   fields: ['email', 'password'],
+//   validate,
+// }
+// )(connected);
+
+const formed = reduxForm({
+    form: 'SignUpForm',
+    // fields: ['email', 'password'],
+})(SignUpForm)
+
+const connected = connect(
+  state => ({
+      login: state.login,
+      token: state.client.token
+  }),
+
+  dispatch => ({
+    // reduxForm() expects the component to have an onSubmit
+    // prop. You could also pass this from a parent component.
+    // I want to dispatch a redux action.
+    onSubmit: data => dispatch(loginRequest(data)),
+
+  })
+)(formed)
+
+export default connected

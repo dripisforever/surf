@@ -9,26 +9,21 @@ import {
   LOGIN_OUT
 } from './constants'
 
-
-
-// import {CLIENT_LOGOUT} from '../logout/constants'
-
 import {
   setClient,
   unsetClient,
 } from '../client/actions'
-
-// import {
-//   CLIENT_UNSET,
-// } from '../client/constants'
+import history from '../history';
 import {loadState} from '../connectivity/localStorage';
 
 
-import history from '../history';
 
-const loginUrl = `https://views-api.herokuapp.com/api/users/signin`
-const loginSocialUrl = `${process.env.REACT_APP_API_URL}/sociallogin`
 
+
+
+
+const loginUrl = `https://views-api.herokuapp.com/api/users/signin`;
+const loginSocialUrl = `${process.env.REACT_APP_API_URL}/sociallogin`;
 
 function loginApi (email, password) {
 
@@ -83,7 +78,9 @@ function* logout () {
     yield put(unsetClient())
     localStorage.removeItem('token')
 }
+
 const state = localStorage.viewsly;
+
 function* loginFlow (username, password, fullname,  fid, profile_picture) {
     let token
     try {
@@ -101,12 +98,8 @@ function* loginFlow (username, password, fullname,  fid, profile_picture) {
     } catch (error) {
         // error? send it to redux
         yield put({ type: LOGIN_ERROR, error })
-    } finally {
-        // No matter what, if our `forked` `task` was cancelled
-        // we will then just redirect them to login
-        //yield put({ type: LOGIN_ERROR, error })
     }
-    return token
+    // return token
 }
 
 function* loginSocial(fullname, username, fid, profile_picture) {
@@ -128,13 +121,13 @@ function* loginWatcher () {
     while (true) {
 
         const { username, password } = yield take(LOGIN_REQUESTING)
-        const task = yield fork(loginFlow, username, password)
-        const action = yield take([LOGIN_OUT, LOGIN_ERROR])
+        const task = yield call(loginFlow, username, password)
+        // const action = yield take([LOGIN_OUT, LOGIN_ERROR])
 
-        if (action.type === LOGIN_OUT) {
-            yield cancel(task)
-            yield call(logout)
-        }
+        // if (action.type === LOGIN_OUT) {
+            // yield cancel(task)
+            // yield call(logout)
+        // }
 
         // yield call(logout)
     }

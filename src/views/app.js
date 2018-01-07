@@ -18,7 +18,10 @@ import './styles/App.css';
 import Surf from './components/Surf';
 import SearchPage from './pages/search-page';
 import SignInPage from './pages/signin-page';
+import SignUpPage from './pages/signup-page';
 import UserPage   from './pages/user-page';
+
+import requireAuth from './requireAuth';
 // import FeedPage from './pages/feed-page';
 import { getSearch, searchActions } from '../core/search';
 // import requireAuth from './requireAuth';
@@ -32,11 +35,12 @@ export const App = ({handleSearch, search, toggleSearch}) => {
 
       <main className="main">
         <Switch>
-          <Route exact path="/" render={(props) => ( <Surf handleSearch={handleSearch} search={search} /> )} />
+          <Route exact path="/"    render={(props) => ( <Surf handleSearch={handleSearch} search={search} /> )} />
           <Route path="/search"    component={SearchPage} />
 
           <Route path="/signin"    component={SignInPage} />
-          <Route path="/:username" component={UserPage} />
+          <Route path="/signup"    component={SignUpPage} />
+          <Route path="/:username" component={requireAuth(UserPage)} />
         </Switch>
       </main>
 

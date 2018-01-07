@@ -11,6 +11,10 @@ const initialState = {
   errors: [],
   redirectTo: '',
 
+  attributes: {
+    // username: false,
+  },
+
 
 }
 
@@ -54,6 +58,7 @@ export function loginReducer(state = initialState, action) {
           body: action.error.toString(),
           time: new Date(),
         }]),
+        // username: action.payload
         messages: [],
         requesting: false,
         successful: false,

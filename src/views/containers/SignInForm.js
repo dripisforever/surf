@@ -101,7 +101,7 @@ const validate = (values) => {
 const formed = reduxForm({
     form: 'SignInForm',
     // fields: ['email', 'password'],
-})(SignInForm)
+}, validate)(SignInForm)
 
 const connected = connect(
   state => ({
