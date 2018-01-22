@@ -2,7 +2,8 @@ a.track-card__title-link {
   text-decoration: none;
 }
 .track-block {
-  margin-top: 1em;
+  /* margin-top: 1em; */
+  margin-bottom: 3em;
   /* width: 20em; */
   width: 100%;
   padding: 1px 11px;
@@ -14,7 +15,7 @@ a.track-card__title-link {
   padding-bottom: 6em;
   padding-top: 10px;
   background-color: #ffffff;
-  transition: box-shadow .3s ease-out;
+  transition: box-shadow .15s ease-out;
 
 }
 div#root {
