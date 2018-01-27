@@ -54,7 +54,9 @@ class SearchPage extends React.Component {
   }
 
   setPreventHideDropdown() {
+    // this.resetPreventHideDropdown();
     this.setState({ preventHideDropdown: true });
+    // this.setState({ preventHideDropdown: false });
   }
 
   resetPreventHideDropdown() {
@@ -71,11 +73,16 @@ class SearchPage extends React.Component {
     this.setState({ showDropdown: true });
   }
   componentWillMount() {
+    // this.setState({ preventHideDropdown: false });
+    // this.setState({ showDropdown: false });
     this.props.loadSearchResults(this.props.query);
   }
 
   componentWillUpdate(nextProps) {
     if (nextProps.query !== this.props.query) {
+      // this.setState({ preventHideDropdown: false });
+      this.setState({ showDropdown: false });
+
       this.props.loadSearchResults(nextProps.query);
     }
   }
@@ -105,6 +112,8 @@ class SearchPage extends React.Component {
                showDropdown={this.showDropdown}
                hideDropdown={this.hideDropdown}
                term={this.state.term}
+               // urls={this.props.location}
+               // dash={this.props.location.search.get('q')}
              />
              {this.renderSearchResults()}
            </div>
@@ -140,7 +149,8 @@ class SearchPage extends React.Component {
 
 const mapStateToProps = (state, props) => {
   return {
-    query: new URLSearchParams(props.location.search).get('q')
+    query: new URLSearchParams(window.location.search).get('q'),
+    urls: props.location.search.q
   };
 };
 

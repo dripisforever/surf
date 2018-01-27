@@ -90,10 +90,12 @@ function* loginFlow (username, password, fullname,  fid, profile_picture) {
             token = yield call(loginApi, username, password)
             // localStorage.setItem('viewsly', JSON.stringify(token.user))
         }
+
         yield put(setClient(token))
         yield put({type: LOGIN_SUCCESS, payload: token.user})
         const state = loadState();
-        history.push(`/${state.login.attributes.username}`);
+        yield call(history.push, `/${state.login.attributes.username}`)
+        // history.push(`/${state.login.attributes.username}`);
 
     } catch (error) {
         // error? send it to redux

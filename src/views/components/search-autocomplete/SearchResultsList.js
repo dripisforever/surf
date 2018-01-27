@@ -7,8 +7,9 @@ class SearchResultsList extends React.Component {
   render() {
     return (
       <div className="alo-dropdown-menu" id="alo-autocomplete-items"
-        onMouseEnter={() => {this.props.setPreventHideDropdown()}}
         onMouseLeave={() => {this.props.resetPreventHideDropdown()}}
+        onMouseEnter={() => {this.props.setPreventHideDropdown()}}
+        onClick={() => {this.props.resetPreventHideDropdown()}}
         >
         {/* <span className="dropdown-arrow-top"></span>
         <span className="dropdown-arrow-bottom"></span>
@@ -28,7 +29,7 @@ class SearchResultsList extends React.Component {
 
   renderUsers() {
     return this.props.users.slice(0, 10).map((user) => {
-      return <SearchUserListItem key={user.id} user={user} />
+      return <SearchUserListItem key={user.id} user={user} hideDrop={this.props.resetPreventHideDropdown} />
     });
   }
 

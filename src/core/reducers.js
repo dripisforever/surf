@@ -29,7 +29,7 @@ const rootReducer = (state, action) => {
   if (action.type === USER_SIGN_OUT) {
     // Reset redux state to initialState.
     state = undefined;
-    // history.push('/signin');
+    history.push('/signin');
   }
 
   return appReducer(state, action);

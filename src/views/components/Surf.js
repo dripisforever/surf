@@ -2,18 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-// import Icon from '../icon';
-// import IconButton from '../icon-button';
 import SurfBar from './SurfBar';
 import SurfResultsList from './surf-autocomplete/SurfResultsList';
-// import './app-header.css';
 import {API_MOVIES_URL} from '../../core/constants';
 import '../styles/SurfBar.css';
+
 class Surf extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { preventHideDropdown: false, showDropdown: false, term: [], posts: [], users: [], tags: [] }
+    this.state = {
+      suggestions: [],
+      preventHideDropdown: false,
+      showDropdown: false,
+      term: [],
+      posts: [],
+      users: [],
+      tags: []
+    }
     this.hideDropdown = this.hideDropdown.bind(this);
     this.showDropdown = this.showDropdown.bind(this);
     this.setPreventHideDropdown = this.setPreventHideDropdown.bind(this);
@@ -56,6 +62,21 @@ class Surf extends React.Component {
     this.setState({ showDropdown: true });
   }
 
+  renderSearchResults() {
+    if(!this.state.showDropdown ||  this.state.users.length === 0 ) {
+      return;
+    }
+
+    return (
+      <SurfResultsList
+        setPreventHideDropdown={this.setPreventHideDropdown}
+        resetPreventHideDropdown={this.resetPreventHideDropdown}
+        term={this.state.term}
+        users={this.state.users}
+      />
+    );
+  }
+
   render() {
     const { handleSearch, search } = this.props;
     const logoUrl = require(`../images/black-views-logo.png`);
@@ -76,34 +97,7 @@ class Surf extends React.Component {
       </div>
     )
   }
-  // renderUserAvatar(){
-  //   if (currentUser) {
-  //     return (
-  //       <div>
-  //         <img />
-  //       </div>
-  //     )
-  //   }
-  // }
-  renderSearchResults() {
-    // if (!query || query.length < 0) {
-    //     return;
-    // }
-    if(!this.state.showDropdown ||  this.state.users.length === 0 ) {
-      return;
-    }
-
-    return (
-      <SurfResultsList
-        setPreventHideDropdown={this.setPreventHideDropdown}
-        resetPreventHideDropdown={this.resetPreventHideDropdown}
-        term={this.state.term}
-        users={this.state.users}
-      />
-    );
-  }
-
-}
+};
 
 Surf.propTypes = {
   handleSearch: PropTypes.func.isRequired,

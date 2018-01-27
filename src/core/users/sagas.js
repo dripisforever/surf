@@ -48,7 +48,7 @@ const profileApi = (username, headers) =>  {
 
 function* logout () {
     yield put(unsetClient())
-    localStorage.removeItem('token')
+    localStorage.removeItem('viewsly')
 }
 
 function* profileFlow (username) {
@@ -75,7 +75,7 @@ function* profileFlow (username) {
 
 
 function* profileWatcher () {
-    while (true) {
+    // while (true) {
 
         const { username } = yield take(FETCH_PUBLIC_PROFILE_SUCCESS);
 
@@ -91,8 +91,14 @@ function* profileWatcher () {
         //
         // }
 
-        // yield call(logout)
-    }
+        if (action.type === USER_SIGN_OUT) {
+          // Reset redux state to initialState.
+          // state = undefined;
+          history.push('/');
+        }
+
+        yield call(logout)
+    // }
 }
 
 export const userSagas = [

@@ -8,7 +8,7 @@ class SurfUserListItem extends React.Component {
   }
 
   navigate() {
-    history.push(`search?q=${this.props.user.username}`);
+    history.push(`/search?q=${this.props.user.username}`);
   }
   render() {
     return (

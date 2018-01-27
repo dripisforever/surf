@@ -1,9 +1,10 @@
 import React from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 // import SearchResults from './SearchResults';
-// import '../styles/SearchBar.css';
 import '../styles/search.css';
+import queryString from 'query-string';
 
 import { push } from 'react-router-redux';
 class SearchBar extends React.Component {
@@ -20,6 +21,8 @@ class SearchBar extends React.Component {
 
     this.state = {
       query: this.props.query,
+      // query: '',
+      now: '',
       pageNum: 1,
       data: {
         results: [],
@@ -31,31 +34,36 @@ class SearchBar extends React.Component {
     this.handleQueryChange = this.handleQueryChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  // componentWillMount(props) {
+  //   this.setState({ now: queryString.parse(props.location.search).q || '' })
+  // }
+
+  // componentWillUpdate(nextProps) {
+    // if (nextProps.query !== this.props.query) {
+      // this.setState({ preventHideDropdown: false });
+      // this.setState({ showDropdown: false });
+      // this.hideDropdown();
+      // this.props.loadSearchResults(nextProps.query);
+    // }
+  // }
+
   componentDidMount() {
     this.props.hideDropdown();
   }
-  handleQueryChange(term) {
-      this.setState({query: term});
+  componentWillUpdate(nextProps, nextState) {
+    // this.props.hideDropdown();
+  }
 
+  handleQueryChange(e) {
+      this.setState({query: e.target.value});
+      // document.getElementById("myURL").value = this.props.slon;
+      // this.setState({query: this.props.location.search.get('q') })
       if (!this.input.value || this.input.value.length < 0) {
           return;
       } else {
-        this.props.onSearchTermChange(term);
+        this.props.onSearchTermChange(e.target.value);
       }
   }
-
-  // doSearch = (query) => {
-  //   return axios({
-  //     method: 'GET',
-  //     url: `http://api.themoviedb.org/3/search/movie?query=${query}&api_key=b6cd56bf94f8f8f33f48689d00174b5b`
-  //     // url: `${API_URL}/users/search?q=${term}`
-  //   })
-  //   .then(({data}) => {
-  //     this.setState({
-  //       data: data
-  //     });
-  //   });
-  // }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -67,6 +75,7 @@ class SearchBar extends React.Component {
         return;
     }
     this.input.blur();
+    this.input.value = query
     this.props.handleSearch(query);
   }
 
@@ -75,8 +84,9 @@ class SearchBar extends React.Component {
   render() {
       return (
         <div className="root-searchBar">
-         <form className="searchForm" onSubmit={this.handleSubmit} noValidate>
+         <form className="searchForm" onSubmit={this.handleSubmit} >
           <input
+            id="myUrl"
             onFocus={() => this.props.showDropdown()}
             onBlur={() => this.props.hideDropdown()}
               autoComplete="off"
@@ -85,14 +95,25 @@ class SearchBar extends React.Component {
               ref={e => this.input = e}
               // placeholder="Search for a movie..."
               value={this.state.query}
-              onChange={event => this.handleQueryChange(event.target.value)}
+              onChange={this.handleQueryChange}
+              // onClick={this.handleSearch}
           />
-
+          {/* <input type="submit" value="Search" onClick={this.handleSearch} /> */}
          </form>
 
        </div>
       );
   }
 }
+const mapStateToProps = (state, props) => {
+  return {
+    // wow: state.query
+    slon: new URLSearchParams(window.location.search).get('q')
+  };
+};
 
-export default SearchBar;
+// export default SearchBar;
+export default connect(
+  mapStateToProps,
+  // mapDispatchToProps
+)(SearchBar);

@@ -65,6 +65,16 @@ class UserPage extends React.Component {
     }
   }
 
+  // componentWillMount() {
+  //   this.props.loadUser(this.props.match.params.username);
+  // }
+  //
+  // omponentWillUpdate(nextProps) {
+  //   if (nextProps.match.params.username !== this.props.match.params.username) {
+  //     this.props.loadUser(nextProps.match.params.username);
+  //   }
+  // }
+
   _openUsersModal(modalUserType) {
     this.setState({
       usersModalIsOpen: true,
