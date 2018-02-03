@@ -19,7 +19,7 @@ var SearchResults = React.createClass({
            }
        });
 
-       var SearchBar = React.createClass({
+var SearchBar = React.createClass({
            getInitialState: function() {
                return {query: ''};
            },
@@ -50,7 +50,7 @@ var SearchResults = React.createClass({
            }
        });
 
-       var MovieBox = React.createClass({
+var MovieBox = React.createClass({
            render: function() {
                var m = this.props.movie;
                return (
@@ -61,7 +61,7 @@ var SearchResults = React.createClass({
            }
        });
 
-       var Pagination = React.createClass({
+var Pagination = React.createClass({
            render: function() {
                var pages = [];
                var total = this.props.totalPages;
@@ -74,7 +74,7 @@ var SearchResults = React.createClass({
            }
        });
 
-       var Page = React.createClass({
+var Page = React.createClass({
            handleClick: function(e) {
                var pageNum = e.target.innerHTML;
                this.props.onPageClick(pageNum);
@@ -86,7 +86,7 @@ var SearchResults = React.createClass({
            }
        });
 
-       var MovieSearchPage = React.createClass({
+var MovieSearchPage = React.createClass({
            getInitialState: function() {
                return {query: '', pageNum: 1, data: {results: [], total_pages: 0, total_results: 0}};
            },
@@ -122,6 +122,6 @@ var SearchResults = React.createClass({
            }
        });
 
-       ReactDOM.render(
-           <MovieSearchPage url="http://api.themoviedb.org/3/search/movie" apiKey=""/>,
-           document.getElementById('container')s
+ReactDOM.render(
+    <MovieSearchPage url="http://api.themoviedb.org/3/search/movie" apiKey=""/>,
+   document.getElementById('container'));

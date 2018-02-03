@@ -49,6 +49,7 @@ class SurfBar extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    // this.input = e;
     const SPACE_SPLITTER = /\s+/;
     var query = this.state.query.trim().split(SPACE_SPLITTER).join('+');
 

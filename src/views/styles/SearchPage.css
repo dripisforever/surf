@@ -17,3 +17,55 @@ img.Logo {
     margin-top: 20px;
     margin-left: 7em;
 }
+
+/* li:active.active  {
+  background-color: red;
+} */
+
+.pagination-des  li {
+  display: inline-flex;
+  /* padding: 14px; */
+  padding-left: 0;
+  border-radius: 6px;
+
+}
+
+li.demski.selected {
+  background-color: #f2f2f2;
+  text-decoration: underline;
+}
+.demski a:hover {
+  cursor: pointer;
+  color: #676abb;
+  background-color: #f2f2f2;
+  /* color: red; */
+  /* text-decoration: underline; */
+}
+.demski a:focus {
+  outline: 0;
+}
+.demski a {
+  color: #676abb;
+  padding: 20px;
+  border-radius: 6px;
+}
+.next a {
+  color: #676abb;
+  text-decoration: none;
+}
+.previous a {
+  color: #676abb;
+  text-decoration: none;
+}
+li.woeski {
+    display: none;
+}
+
+li.demski a {
+  text-decoration: none;
+}
+@media (min-width: 1024px) {
+  .pagination-des {
+    margin-left: 9em;
+  }
+}
