@@ -100,12 +100,12 @@ class SearchPage extends React.Component {
   }
 
   componentWillMount() {
-    this.props.loadSearchResults(this.props.query);
+    this.props.loadSearchResults(this.props.query, this.props.pageNum);
   }
 
   componentWillUpdate(nextProps) {
     if (nextProps.query !== this.props.query) {
-      this.props.loadSearchResults(nextProps.query);
+      this.props.loadSearchResults(nextProps.query, nextProps.pageNum);
     }
   }
 
@@ -189,9 +189,9 @@ class SearchPage extends React.Component {
            <div className="pagination-des">
              <ReactPaginate previousLabel={"previous"}
                             pageClassName={"demski"}
-                            // initialPage={0}
+                            // initialPage={this.props.pageNum}
                             nextLabel={"next"}
-                            breakLabel={<a href="/">...</a>}
+                            // breakLabel={<a href="/">...</a>}
                             breakClassName={"woeski"}
                             pageCount={this.state.pageCount}
                             marginPagesDisplayed={0}
@@ -199,6 +199,7 @@ class SearchPage extends React.Component {
                             containerClassName={"jetski"}
                             subContainerClassName={"demski"}
                             onPageChange={this.handlePageClick}
+                            forcePage={this.props.pageNum-1}
                             // hrefBuilder={this.linkBuilder}
                             // onPageChange={(page) => history.push(`search?q=${this.props.query}&page=${page.selected+1}`)}
                             // hrefBuilder={(page) => `search?q=${this.props.query}&page=${page}`}
@@ -213,7 +214,9 @@ class SearchPage extends React.Component {
 
 const mapStateToProps = (state, props) => {
   return {
+    pageNum: new URLSearchParams(props.location.search).get('page'),
     query: new URLSearchParams(props.location.search).get('q')
+
   };
 };
 

@@ -6,10 +6,10 @@ import { searchActions } from './actions';
 
 
 export function* loadSearchResults({payload}) {
-  const { query, tracklistId } = payload;
+  const { query, tracklistId, page } = payload;
   const tracklist = yield select(getTracklistById, tracklistId);
   if (tracklist && tracklist.isNew) {
-    yield call(fetchSearchResults, tracklistId, query);
+    yield call(fetchSearchResults, tracklistId, query, page);
   }
 }
 

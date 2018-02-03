@@ -7,10 +7,11 @@ export const searchActions = {
   TOGGLE_SEARCH_FIELD: 'TOGGLE_SEARCH_FIELD',
 
 
-  loadSearchResults: query => ({
+  loadSearchResults: (query, pageNum) => ({
     type: searchActions.LOAD_SEARCH_RESULTS,
     payload: {
       query: query,
+      page: pageNum,
       tracklistId: tracklistIdForSearch(query)
     }
   }),
