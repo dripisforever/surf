@@ -21,16 +21,11 @@ export class Tracklist extends React.Component {
 
   renderTrackCards() {
     return this.props.tracks.map((track) => {
-      return <TrackCard key={track.id} track={track} />;
+      return <TrackCard key={track.id} track={track} body={track.body} highlight={track.highlight} />;
     });
   }
 
   render() {
-
-
-
-
-
     return (
       // <div className="woess">
       //
@@ -55,7 +50,7 @@ const mapStateToProps = createSelector(
   getTracksForCurrentTracklist,
   (tracklist, tracks) => ({
     isPending: tracklist.isPending,
-    tracks
+    tracks: tracks
   })
 );
 

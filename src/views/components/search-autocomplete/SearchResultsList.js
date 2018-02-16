@@ -27,7 +27,7 @@ class SearchResultsList extends React.Component {
   }
 
   renderUsers() {
-    return this.props.users.slice(0, 10).map((user) => {
+    return this.props.queries.slice(0, 10).map((user) => {
       return <SearchUserListItem key={user.id} user={user} />
     });
   }

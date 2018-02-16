@@ -20,7 +20,8 @@ export const tracklistActions = {
   fetchTracksFulfilled: (tracklistId, data) => ({
     type: tracklistActions.FETCH_TRACKS_FULFILLED,
     payload: {
-      collection: data.users,
+      // collection: data.users,
+      collection: data.websites.hits.hits._source,
       tracklistId: tracklistId
     }
   }),

@@ -27,8 +27,8 @@ class SurfResultsList extends React.Component {
   }
 
   renderUsers() {
-    return this.props.users.slice(0, 10).map((user) => {
-      return <SurfUserListItem key={user.id} user={user} />
+    return this.props.queries.slice(0, 10).map((query) => {
+      return <SurfUserListItem key={query.id} query={query} />
     });
   }
 
@@ -41,7 +41,7 @@ class SurfResultsList extends React.Component {
 
 
   renderUserHeading() {
-    if (this.props.users.length === 0) { return; }
+    if (this.props.queries.length === 0) { return; }
 
     return <li className="autocomplete-heading"><h4>People</h4></li>
   }

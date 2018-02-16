@@ -49,12 +49,16 @@
   }
 
   .track-block {
-    padding-bottom: 10em;
+    height: auto;
+    position: relative;
+    /* padding-bottom: 10em; */
   }
 
   button.track-card__btn {
-    margin-left: 0;
-    margin-top: 5em;
+    /* margin-left: 0; */
+    margin-left: 37%;
+    margin-top: auto;
+    /* top: 88%; */
 
   }
   span.value {
@@ -63,8 +67,9 @@
   }
 
   span.track-card__views {
-    margin-left: 3em;
-    margin-top: 65px;
+    margin-left: auto;
+    /* margin-top: 65px; */
+    margin-top: auto;
     position: absolute;
     width: 0;
   }
@@ -501,14 +506,15 @@ there.
     width: 100%;
   }
   button.track-card__btn {
-    margin-left: 45%;
+    margin-left: 94%;
     margin-top: 0;
+    top: 38%;
   }
   span.track-card__views {
     color: #a3a4bd;
     cursor: pointer;
     /* margin-top: -12px; */
-    margin-top: 11px;
+    margin-top: 0;
 
     position: absolute;
     margin-left: 50%;

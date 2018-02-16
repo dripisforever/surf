@@ -6,7 +6,7 @@ import { api } from './api-service';
 function* fetchEntities(apiFunction, actions, id, param, page) {
   try {
     yield put(actions.pending(id));
-    const data = yield call(apiFunction, param, page || id);
+    const data = yield call(apiFunction, param, page);
     yield put(actions.fulfilled(id, data));
   }
   catch (error) {

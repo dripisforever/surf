@@ -17,7 +17,7 @@ import Pagination from '../../components/pagination/Pagination';
 // import history from '../../../core/his';
 import history from '../../../core/hist';
 import '../../styles/SearchPage.css';
-import {API_MOVIES_URL} from '../../../core/constants';
+import {API_QUERIES_URL, API_MOVIES_URL} from '../../../core/constants';
 // import '../styles/TrackCard.css';
 class SearchPage extends React.Component {
   static propTypes = {
@@ -34,6 +34,7 @@ class SearchPage extends React.Component {
       term: [],
       posts: [],
       users: [],
+      queries: [],
       tags: [],
       pageCount: 100,
       currentPage: ''
@@ -69,12 +70,12 @@ class SearchPage extends React.Component {
     this.setState({ term });
     return axios({
       method: 'GET',
-      url: `${API_MOVIES_URL}?q=${term}`
+      url: `${API_QUERIES_URL}?q=${term}`
       // url: `${API_URL}/users/search?q=${term}`
     })
     .then(({data}) => {
       this.setState({
-        users: data.users,
+        queries: data.queries.hits.hits._source,
         // pageCount: Math.ceil(data.hits.total/10),
         website: data.websites
       });
@@ -100,11 +101,13 @@ class SearchPage extends React.Component {
   }
 
   componentWillMount() {
+    this.forceUpdate();
     this.props.loadSearchResults(this.props.query, this.props.pageNum);
   }
 
   componentWillUpdate(nextProps) {
     if (nextProps.query !== this.props.query) {
+      this.forceUpdate();
       this.props.loadSearchResults(nextProps.query, nextProps.pageNum);
     }
   }
@@ -126,7 +129,7 @@ class SearchPage extends React.Component {
     })
     .then(({data}) => {
       this.setState({
-        users: data.users,
+        queries: data.queries.hits.hits._source,
         // pageCount: Math.ceil(data.hits.total/10),
         website: data.websites
       });
@@ -134,12 +137,15 @@ class SearchPage extends React.Component {
   }
 
   handlePageClick = (page) => {
+    this.forceUpdate();
     window.scrollTo(0,0) ;
+    window.location.reload();
     let selected = page.selected+1;
+    this.searchWithPagination(this.props.query, selected);
     let offset = Math.ceil(selected * this.props.perPage);
     history.push(`search?q=${this.props.query}&page=${selected}`);
     // this.setState({offset: offset});
-    this.searchWithPagination(this.props.query, selected);
+
 
 
   };
@@ -157,7 +163,7 @@ class SearchPage extends React.Component {
         setPreventHideDropdown={this.setPreventHideDropdown}
         resetPreventHideDropdown={this.resetPreventHideDropdown}
         term={this.state.term}
-        users={this.state.users}
+        queries={this.state.queries}
       />
     );
   }
@@ -202,7 +208,7 @@ class SearchPage extends React.Component {
                             forcePage={this.props.pageNum-1}
                             // hrefBuilder={this.linkBuilder}
                             // onPageChange={(page) => history.push(`search?q=${this.props.query}&page=${page.selected+1}`)}
-                            // hrefBuilder={(page) => `search?q=${this.props.query}&page=${page}`}
+                            hrefBuilder={(page) => `search?q=${this.props.query}&page=${page}`}
                             // activeClassName={""}
               />
            </div>

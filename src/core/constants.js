@@ -24,9 +24,15 @@ export const APP_NAME = 'soundcloud-redux';
 //
 //
 // export const CLIENT_ID_PARAM = `api_key=${CLIENT_ID}`;
-export const API_BASE_URL = 'https://views-api.herokuapp.com/api';
+export const API_BASE_URL = 'http://localhost:5000/api'
+// export const API_BASE_URL = 'https://views-api.herokuapp.com/api';
 // export const API_BASE_URL = 'http://views-api.herokuapp.com/api';
-export const API_MOVIES_URL = `${API_BASE_URL}/users/search`;
+// export const API_MOVIES_URL = `${API_BASE_URL}/users/search`;
+// export const API_MOVIES_URL = `${API_BASE_URL}/search`;
+export const API_MOVIES_URL = `${API_BASE_URL}/search_user`;
+
+export const API_QUERIES_URL = `${API_BASE_URL}/queries/search`
+export const API_SEARCH_WEBSITES = `${API_BASE_URL}/search`
 export const API_USERS_URL = `${API_BASE_URL}/users`;
 
 export const CLIENT_ID = process.env.REACT_APP_SOUNDCLOUD_CLIENT_ID || 'b6cd56bf94f8f8f33f48689d00174b5b';

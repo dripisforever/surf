@@ -7,13 +7,13 @@ import axios from 'axios';
 import SurfBar from './SurfBar';
 import SurfResultsList from './surf-autocomplete/SurfResultsList';
 // import './app-header.css';
-import {API_MOVIES_URL} from '../../core/constants';
+import {API_QUERIES_URL} from '../../core/constants';
 import '../styles/SurfBar.css';
 class Surf extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { preventHideDropdown: false, showDropdown: false, term: [], posts: [], users: [], tags: [] }
+    this.state = { preventHideDropdown: false, showDropdown: false, term: [], posts: [], queries: [],users: [], tags: [] }
     this.hideDropdown = this.hideDropdown.bind(this);
     this.showDropdown = this.showDropdown.bind(this);
     this.setPreventHideDropdown = this.setPreventHideDropdown.bind(this);
@@ -27,12 +27,12 @@ class Surf extends React.Component {
     this.setState({ term });
     return axios({
       method: 'GET',
-      url: `${API_MOVIES_URL}?q=${term}`
+      url: `${API_QUERIES_URL}?q=${term}`
       // url: `${API_URL}/users/search?q=${term}`
     })
     .then(({data}) => {
       this.setState({
-        users: data.users,
+        queries: data.queries.hits.hits._source,
         website: data.websites
       });
     });
@@ -89,7 +89,7 @@ class Surf extends React.Component {
     // if (!query || query.length < 0) {
     //     return;
     // }
-    if(!this.state.showDropdown ||  this.state.users.length === 0 ) {
+    if(!this.state.showDropdown ||  this.state.queries.length === 0 ) {
       return;
     }
 
@@ -98,7 +98,7 @@ class Surf extends React.Component {
         setPreventHideDropdown={this.setPreventHideDropdown}
         resetPreventHideDropdown={this.resetPreventHideDropdown}
         term={this.state.term}
-        users={this.state.users}
+        queries={this.state.queries}
       />
     );
   }

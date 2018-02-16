@@ -12,7 +12,7 @@ export class TrackCard extends React.Component {
   };
 
   render() {
-    const {track} = this.props;
+    const {track, body, highlight} = this.props;
     return (
       <div className="track-block">
         {/* <div className="track-card__username">
@@ -22,23 +22,35 @@ export class TrackCard extends React.Component {
         {/* <h1 className="track-card__title">{track.title}</h1> */}
         <div className="track-card__title">
           <a className="track-card__title-link" href={`https://views.ly/${track.username}`}>
-          <span className="bra">{track.username}</span>
+          <span className="bra">{track.title}</span>
           {/* <span>{website.title}</span> */}
           </a>
         </div>
-        <div className="track-card__url">www.views.ly/{track.username}</div>
-        <button className="track-card__btn" onClick={this.handleClick}>
-          <i className="fa fa-heart-o"></i>
 
-        </button>
-        <LikeButton
+        <div className="track-card__url">
+          views.ly/{track.title}
+        </div>
+
+        <div className="track-card__body">
+
+          <div dangerouslySetInnerHTML={{__html: `${track.highlight["0"]}... \n ${track.highlight["1"]}... ${track.highlight["2"]} `  }} />
+          {/* <div dangerouslySetInnerHTML={{__html: `${track.highlight.length} `  }} /> */}
+        </div>
+
+
+          <button className="track-card__btn" onClick={this.handleClick}>
+            <i className="fa fa-heart-o"></i>
+            <span className="track-card__views">1</span>
+          </button>
+          {/* <span className="track-card__views">1</span> */}
+        {/* <LikeButton
           onLike={this.props.onLike}
           onCancelLike={this.props.onCancelLike}
           onDislike={this.props.onDislike}
           onCancelDislike={this.props.onCancelDislike}
           liked={this.props.liked}
-        />
-        <span className="track-card__views">1</span>
+        /> */}
+
         {/* <div className="track-card__url">{website.url}</div> */}
         {/* <div className="track-card__content">/{website.content}</div> */}
 

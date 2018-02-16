@@ -1,5 +1,5 @@
 import request from 'superagent';
-import { API_MOVIES_URL, CLIENT_ID_PARAM, PAGINATION_PARAMS } from '../constants';
+import { API_SEARCH_WEBSITES, API_MOVIES_URL, CLIENT_ID_PARAM, PAGINATION_PARAMS } from '../constants';
 // import { API_TRACKS_URL, CLIENT_ID_PARAM, PAGINATION_PARAMS } from '../constants';
 
 export const api = {
@@ -10,9 +10,10 @@ export const api = {
   fetchSearchResults(query, pageNum) {
     return dispatch({
       paginate: true,
-      query: `q=${query}&page=${pageNum}`,
-      url: API_MOVIES_URL,
+      query: `q=${query}`,
+      url: API_SEARCH_WEBSITES,
       // page: `page=${pageNum}`
+      page: pageNum
     });
   },
   //
@@ -32,10 +33,10 @@ export function dispatch(options) {
 export function requestUrl({paginate, query, url, page}) {
   let params = [];
 
-  if (!url.includes(CLIENT_ID_PARAM)) params.push(CLIENT_ID_PARAM);
+  // if (!url.includes(CLIENT_ID_PARAM)) params.push(CLIENT_ID_PARAM);
   if (query) params.push(query);
   // if (paginate) params.push(PAGINATION_PARAMS);
-  if (page) params.push(`${page}`)
+  if (page) params.push(`page=${page}`)
   if (params.length) {
     url += url.indexOf('?') === -1 ? '?' : '&';
     url += params.join('&');
