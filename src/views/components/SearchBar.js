@@ -68,6 +68,8 @@ class SearchBar extends React.Component {
     }
     this.input.blur();
     this.props.handleSearch(query);
+    window.scrollTo(0,0) ;
+    window.location.reload();
   }
 
 

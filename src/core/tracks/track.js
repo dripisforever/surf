@@ -29,7 +29,7 @@ export function createTrack(data) {
     username: data.username,
     title: data.title,
     body: data.body,
-    highlight: data.highlight.body,
+    highlight: data.highlight
     // title: formatTrackTitle(data.title),
 
 

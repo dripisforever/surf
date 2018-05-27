@@ -25,8 +25,6 @@ import requireAuth from './requireAuth';
 // import FeedPage from './pages/feed-page';
 import { getSearch, searchActions } from '../core/search';
 
-
-
 export const App = ({handleSearch, search, toggleSearch}) => {
   return (
     <div className="app-container">
@@ -42,6 +40,7 @@ export const App = ({handleSearch, search, toggleSearch}) => {
           <Route path="/signup"    component={SignUpPage}/>
           <Route path="/edit"      component={requireAuth(ProfileEdit)}/>
           <Route path="/:username" component={requireAuth(UserPage)}/>
+          {/* <Route path="/:url" component={WebPage} /> */}
         </Switch>
       </main>
 
