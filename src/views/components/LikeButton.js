@@ -71,7 +71,7 @@ class LikeButton extends React.Component {
           {this.props.liked ?
           (<i className="fa fa-heart LikeButton__icon LikeButton__icon--liked"/>) :
           (<i className="fa fa-heart-o LikeButton__icon"/>)}
-          <span className="track-card__views">1</span>
+          <span className="track-card__views">1979</span>
         </button>
       // </ClickNHold>
     );

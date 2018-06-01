@@ -13,6 +13,7 @@ export const Track = new Record({
   streamable: null,
   streamUrl: null,
   title: null,
+  url: null,
   body: null,
   highlight: null,
   userId: null,
@@ -29,7 +30,8 @@ export function createTrack(data) {
     username: data.username,
     title: data.title,
     body: data.body,
-    highlight: data.highlight
+    highlight: data.highlight,
+    url: data.url,
     // title: formatTrackTitle(data.title),
 
 

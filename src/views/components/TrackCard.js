@@ -35,9 +35,14 @@ export class TrackCard extends React.Component {
           </a>
         </div>
 
+        {/* <div className="track-card__url"> */}
+          {/* views.ly/{track.title.trim().split(/\s+/).join('-')} */}
+        {/* </div> */}
+
         <div className="track-card__url">
-          views.ly/{track.title.trim().split(/\s+/).join('-')}
+          {track.url.trim().split(/\s+/).join('-')}
         </div>
+
         <div className="track-previews">
           <div className="pre-Views" style={{width: `100%`, background: `#d3d3d3`}}>
             <div className="positive-Views"
