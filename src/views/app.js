@@ -16,7 +16,7 @@ import { createSelector } from 'reselect';
 import logo from './styles/logo.svg';
 import './styles/App.css';
 import Surf from './components/Surf';
-import SearchPage from './pages/search-page';
+import PreviewsPage from './pages/previews-page';
 import SignInPage from './pages/signin-page';
 import SignUpPage from './pages/signup-page';
 import UserPage   from './pages/user-page';
@@ -33,7 +33,7 @@ export const App = ({handleSearch, search, toggleSearch}) => {
       <main className="main">
         <Switch>
           <Route exact path="/"    render={(props) => ( <Surf handleSearch={handleSearch} search={search} /> )}/>
-          <Route path="/search"    component={SearchPage}/>
+          <Route path="/search"    component={PreviewsPage}/>
 
 
           <Route path="/signin"    component={SignInPage}/>

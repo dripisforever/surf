@@ -58,7 +58,10 @@ class Surf extends React.Component {
 
   render() {
     const { handleSearch, search } = this.props;
-    const logoUrl = require(`../images/black-views-logo.png`);
+    const logoUrl = require(`../images/views-logo-official.png`);
+    // const logoUrl = require(`../images/pale-logo.png`);
+    // const logoUrl = require(`../images/purple-views-logo.png`);
+    // const logoUrl = require(`../images/black-views-logo.png`);
     return (
       <div className="sypher container">
         <div className="six columns offset-by-three surf-search__main">

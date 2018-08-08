@@ -89,8 +89,8 @@ div#root {
 }
 
 .positive-Views {
-  /* width: 50%; */
-  /* background-color: #676abb; */
+  width: 80%;
+  background-color: #d9317a;
   height: 2px;
 }
 .track-block:hover{
@@ -143,7 +143,8 @@ i.fa.fa-heart-o:hover {
 }
 
 span.track-card__views {
-  color: #a3a4bd;
+  /* color: #a3a4bd; */
+  color: #262626;
   font-size: 13px;
   cursor: pointer;
   margin-left: 50%;

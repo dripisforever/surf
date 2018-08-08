@@ -19,7 +19,7 @@ import history from '../../../core/hist';
 import '../../styles/SearchPage.css';
 import {API_QUERIES_URL, API_MOVIES_URL} from '../../../core/constants';
 // import '../styles/TrackCard.css';
-class SearchPage extends React.Component {
+class PreviewsPage extends React.Component {
   static propTypes = {
     loadSearchResults: PropTypes.func.isRequired,
     query: PropTypes.string.isRequired
@@ -154,7 +154,7 @@ class SearchPage extends React.Component {
     // if (!query || query.length < 0) {
     //     return;
     // }
-    if(!this.state.showDropdown ||  this.state.users.length === 0 ) {
+    if(!this.state.showDropdown ||  this.state.queries.length === 0 ) {
       return;
     }
 
@@ -169,7 +169,10 @@ class SearchPage extends React.Component {
   }
 
   render() {
-    const logoUrl = require(`../../images/black-views-logo.png`);
+    const logoUrl = require(`../../images/purple-views-logo.png`);
+    // const logoUrl = require(`../../images/views-logo-official.png`);
+    // const logoUrl = require(`../../images/black-views-logo.png`);
+
     return (
       <div className="search__results-page container">
 
@@ -234,4 +237,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SearchPage);
+)(PreviewsPage);

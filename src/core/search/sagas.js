@@ -9,6 +9,7 @@ export function* loadSearchResults({payload}) {
   const { query, tracklistId, page } = payload;
   const tracklist = yield select(getTracklistById, tracklistId);
   if (tracklist && tracklist.isNew) {
+    // yield call(fetchSearchResults, tracklistId, query, page);
     yield call(fetchSearchResults, tracklistId, query, page);
   }
 }

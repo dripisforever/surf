@@ -48,6 +48,23 @@ class LikeButton extends React.Component {
 
 
   render() {
+    const defUrl = require(`./../images/black-mascot.png`);
+    const likedUrl = require(`./../images/red-mascot.png`);
+    const dislikedUrl = require(`./../images/heartbreak-mascot-black.png`);
+
+    let button = null;
+
+    if (this.props.liked) {
+      button = <img src={likedUrl} className="LikeButton__icon LikeButton__icon--liked"/>
+    } else if (this.props.disliked) {
+      button = <img src={dislikedUrl} className="LikeButton__icon LikeButton__icon--liked"/>
+    } else if (!this.props.disliked && !this.props.liked) {
+      button = <img src={defUrl} className="LikeButton__icon LikeButton__icon--liked"/>
+    }
+    // const vuseUrl = require(`./../images/red-mascot.png`);
+    // const vuseUrl = require(`./../images/purple-mascot.png`);
+    // const vuseUrl = require(`./../images/heartbreak-mascot.png`);
+    // const vuseUrl = require(`./../images/heartbreak-mascot-black.png`);
     return (
       // <ClickNHold
       //   className="track-card__btn LikeButton__root"
@@ -65,12 +82,20 @@ class LikeButton extends React.Component {
         //  pressCallbackTimeout={2000}
         // />
       //</div>
+        // <button className="track-card__btn LikeButton__root"
+        //   onClick={this.likeClick}
+        //   onDoubleClick={this.onReviewsClick}>
+        //   {this.props.liked ?
+        //   // (<img src="../images/red-mascot.png" className="LikeButton__icon LikeButton__icon--liked"/>) :
+        //   (<img src={likedUrl} className="LikeButton__icon LikeButton__icon--liked"/>):
+        //   // (<i className="fa fa-heart-o LikeButton__icon"/>)}
+        //   (<img src={defUrl} className="LikeButton__icon LikeButton__icon--liked"/>)}
+        //   <span className="track-card__views">1979</span>
+        // </button>
         <button className="track-card__btn LikeButton__root"
           onClick={this.likeClick}
           onDoubleClick={this.onReviewsClick}>
-          {this.props.liked ?
-          (<i className="fa fa-heart LikeButton__icon LikeButton__icon--liked"/>) :
-          (<i className="fa fa-heart-o LikeButton__icon"/>)}
+          {button}
           <span className="track-card__views">1979</span>
         </button>
       // </ClickNHold>

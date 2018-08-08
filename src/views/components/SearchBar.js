@@ -83,6 +83,7 @@ class SearchBar extends React.Component {
             onBlur={() => this.props.hideDropdown()}
               autoComplete="off"
               type="text"
+              spellCheck="false"
               name="query"
               ref={e => this.input = e}
               // placeholder="Search for a movie..."

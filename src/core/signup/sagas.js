@@ -3,10 +3,10 @@ import { handleApiErrors } from '../lib/api-errors'
 
 
 import {
-  LOGIN_REQUESTING,
-  LOGIN_SUCCESS,
-  LOGIN_ERROR,
-  LOGIN_OUT
+  SIGNUP_REQUESTING,
+  SIGNUP_SUCCESS,
+  SIGNUP_ERROR,
+  SIGNUP_OUT
 } from './constants'
 
 import {
@@ -22,17 +22,18 @@ import {loadState} from '../connectivity/localStorage';
 
 
 
-// const loginUrl = `https://views-api.herokuapp.com/api/users/signin`;
-const loginUrl = `http://localhost:5000/v1/users/signin`;
+// const loginUrl = `https://views-api.herokuapp.com/api/users/signup`;
+const signupUrl = `http://localhost:5000/v1/users/signup`;
 const loginSocialUrl = `${process.env.REACT_APP_API_URL}/sociallogin`;
 
-function loginApi (email, password) {
+function signupApi (email, username, password) {
 
     const data = new FormData()
-    data.append('username', email)
+    data.append('email', email)
+    data.append('username', username)
     data.append('password', password)
 
-    return fetch(loginUrl, {
+    return fetch(signupUrl, {
       method: 'POST',
       body: data,
     })
@@ -82,23 +83,23 @@ function* logout () {
 
 const state = localStorage.viewsly;
 
-function* loginFlow (username, password, fullname,  fid, profile_picture) {
+function* signupFlow (email, username, password, fullname,  fid, profile_picture) {
     let token
     try {
         if (typeof fullname !== "undefined") {
             token = yield call(loginSocialApi, fullname, username, fid, profile_picture)
         }else{
-            token = yield call(loginApi, username, password)
+            token = yield call(signupApi, email, username, password)
             // localStorage.setItem('viewsly', JSON.stringify(token.user))
         }
         yield put(setClient(token))
-        yield put({type: LOGIN_SUCCESS, payload: token.user})
+        yield put({type: SIGNUP_SUCCESS, payload: token.user})
         const state = loadState();
         history.push(`/${state.login.attributes.username}`);
 
     } catch (error) {
         // error? send it to redux
-        yield put({ type: LOGIN_ERROR, error })
+        yield put({ type: SIGNUP_ERROR, error })
     }
     // return token
 }
@@ -118,11 +119,11 @@ function* loginSocial(fullname, username, fid, profile_picture) {
     return token
 }
 
-function* loginWatcher () {
+function* signupWatcher () {
     while (true) {
 
-        const { username, password } = yield take(LOGIN_REQUESTING)
-        const task = yield call(loginFlow, username, password)
+        const { email, username, password } = yield take(SIGNUP_REQUESTING)
+        const task = yield call(signupFlow, email, username, password)
         // const action = yield take([LOGIN_OUT, LOGIN_ERROR])
 
         // if (action.type === LOGIN_OUT) {
@@ -134,8 +135,8 @@ function* loginWatcher () {
     }
 }
 
-export const loginSagas = [
-  fork(loginWatcher)
+export const signupSagas = [
+  fork(signupWatcher)
   // fork(watchLoadUserLikes),
   // fork(watchLoadUserTracks)
 ];

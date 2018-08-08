@@ -67,9 +67,16 @@
   }
 
   span.track-card__views {
-    margin-left: auto;
+    /* margin-left: auto; */
     /* margin-top: 65px; */
-    margin-top: auto;
+    /* margin-top: auto; */
+    /* position: absolute; */
+    /* width: 0; */
+
+    margin-left: -2em;
+    /* margin-top: 65px; */
+    margin-top: 3em;
+    margin-right: 0em;
     position: absolute;
     width: 0;
   }
@@ -511,7 +518,8 @@ there.
     top: 38%;
   }
   span.track-card__views {
-    color: #a3a4bd;
+    /* color: #a3a4bd; */
+    color: #262626;
     cursor: pointer;
     /* margin-top: -12px; */
     margin-top: 0;

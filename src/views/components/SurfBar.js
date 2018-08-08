@@ -68,6 +68,7 @@ class SurfBar extends React.Component {
         <div className="six columns offset-by-three root-surfBar">
          <form className="searchForm" onSubmit={this.handleSubmit} noValidate>
           <input
+              spellCheck="false"
               className="woah"
               onFocus={() => this.props.showDropdown()}
               onBlur={() => this.props.hideDropdown()}

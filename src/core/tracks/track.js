@@ -7,6 +7,8 @@ export const Track = new Record({
   duration: null,
   id: null,
   liked: null,
+  disliked: null,
+  viewsCount: null,
   likesCount: null,
   permalinkUrl: null,
   playbackCount: null,
@@ -27,6 +29,9 @@ export function createTrack(data) {
   return new Track({
 
     id: data.id,
+    viewsCount: data.viewsCount,
+    liked: data.liked,
+    disliked: data.disliked,
     username: data.username,
     title: data.title,
     body: data.body,

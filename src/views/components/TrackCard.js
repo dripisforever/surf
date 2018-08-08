@@ -14,8 +14,11 @@ export class TrackCard extends React.Component {
   };
 
   render() {
-
+    const vuseUrl = require(`./../images/heartbreak-mascot-black.png`);
     const { track } = this.props;
+    let button = null;
+    // let liked = null;
+    // let disliked = null;
     // let preview = null;
 
     // if (track.highlight.body.length>0) {
@@ -24,15 +27,24 @@ export class TrackCard extends React.Component {
     //   preview = <div  className="preView" dangerouslySetInnerHTML={{__html: `broski` }} />
     // }
 
+    // if (!track.liked && !track.disliked) {
+    //   // button = <div className="default">default</div>;
+    //   button = <img src={vuseUrl} className="LikeButton__icon LikeButton__icon--liked"/>
+    // } else if (track.liked) {
+    //   button = <div className="liked">liked</div>
+    // } else if (track.disliked) {
+    //   button = <img src={vuseUrl} className="LikeButton__icon LikeButton__icon--liked"/>
+    // }
 
     return (
       <div className="track-block">
         <div className="track-card__title">
-          <a className="track-card__title-link" href={`https://views.ly/site.com/${track.title}`}>
+          <a className="track-card__title-link" href={`https://views.ly/${track.title}`}>
           <span className="bra">{track.title}</span>
           {this.renderTitle}
           {/* <span>{website.title}</span> */}
           </a>
+          {button}
         </div>
 
         {/* <div className="track-card__url"> */}
@@ -44,10 +56,12 @@ export class TrackCard extends React.Component {
         </div>
 
         <div className="track-previews">
-          <div className="pre-Views" style={{width: `100%`, background: `#d3d3d3`}}>
+          {/* <div className="pre-Views" style={{width: `100%`, background: `#d9317a`}}> */}
+          <div className="pre-Views" style={{width: `100%`, background: `#ddd`}}>
             <div className="positive-Views"
               // style={{width: `${this.props.percent}`; background: `#676abb`}}
-              style={{width: `50%`, background: `#676abb`}}>
+              style={{width: `50%`, background: `#676abb`}}
+              >
             </div>
 
             <span className="tooltiptext">1979/30</span>
@@ -74,13 +88,17 @@ export class TrackCard extends React.Component {
             <span className="track-card__views">{this.props.viewsCount}</span>
           </button> */}
           {/* <span className="track-card__views">1</span> */}
+
           <LikeButton
             onLike={this.props.onLike}
             onCancelLike={this.props.onCancelLike}
             onDislike={this.props.onDislike}
             onCancelDislike={this.props.onCancelDislike}
-            liked={this.props.liked}
+            liked={track.liked}
+            disliked={track.disliked}
+            viewsCount={track.viewsCount}
           />
+
           {/* <div className="view-more">
             <span><i className="flash fa fa-flash"/>VIEW More...</span>
           </div> */}
@@ -107,6 +125,7 @@ export class TrackCard extends React.Component {
         </div>
       );
     }
+
 
     // return <span dangerouslySetInnerHTML={}
     // return <div>{this.props.highlight.body.map((preview) =>  {<span dangerouslySetInnerHTML={{ __html: `${preview}`}}/>}).reduce((prev, curr) => [prev, '...', curr])}</div>

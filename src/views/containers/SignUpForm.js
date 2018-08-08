@@ -8,7 +8,8 @@ import {reset} from 'redux-form';
 import history from '../../core/history';
 import { userSignIn } from '../actions';
 import { getAuthErrors, getIsAuthenticating } from '../../core/reducers';
-import { loginRequest } from '../../core/login/actions';
+// import { loginRequest } from '../../core/login/actions';
+import { signupRequest } from '../../core/signup/actions';
 // import ErrorMessages from '../components/ErrorMessages';
 import '../styles/SignInForm.css';
 
@@ -126,7 +127,7 @@ const connected = connect(
     // reduxForm() expects the component to have an onSubmit
     // prop. You could also pass this from a parent component.
     // I want to dispatch a redux action.
-    onSubmit: data => dispatch(loginRequest(data)),
+    onSubmit: data => dispatch(signupRequest(data)),
 
   })
 )(formed)
