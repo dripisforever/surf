@@ -48,18 +48,28 @@ class LikeButton extends React.Component {
 
 
   render() {
-    const defUrl = require(`./../images/black-mascot.png`);
-    const likedUrl = require(`./../images/red-mascot.png`);
-    const dislikedUrl = require(`./../images/heartbreak-mascot-black.png`);
+    const defBtn = require(`./../images/black-mascot.png`);
+    const likedBtn = require(`./../images/purple-mascot-pale.png`);
+    // const likedBtn = require(`./../images/aquarius-mascot.png`);
+    // const dislikedBtn = require(`./../images/heartbreak-mascot.png`);
+    const dislikedBtn = require(`./../images/heartbreak-mascot-red.png`);
+
+    // const defBtn = require
+    // const likedBtn = require
+    // const dislikedBtn = require
 
     let button = null;
+    let count = null;
 
     if (this.props.liked) {
-      button = <img src={likedUrl} className="LikeButton__icon LikeButton__icon--liked"/>
+      button = <img src={likedBtn} className="LikeButton__icon LikeButton__icon--liked"/>
+      count = <span className="track-card__views">{this.props.likesCount}</span>
     } else if (this.props.disliked) {
-      button = <img src={dislikedUrl} className="LikeButton__icon LikeButton__icon--liked"/>
+      button = <img src={dislikedBtn} className="LikeButton__icon LikeButton__icon--liked"/>
+      count = <span className="track-card__views">{this.props.dislikesCount}</span>
     } else if (!this.props.disliked && !this.props.liked) {
-      button = <img src={defUrl} className="LikeButton__icon LikeButton__icon--liked"/>
+      button = <img src={defBtn} className="LikeButton__icon LikeButton__icon--liked"/>
+      count = <span className="track-card__views">{this.props.viewsCount}</span>
     }
     // const vuseUrl = require(`./../images/red-mascot.png`);
     // const vuseUrl = require(`./../images/purple-mascot.png`);
@@ -97,6 +107,7 @@ class LikeButton extends React.Component {
           onDoubleClick={this.onReviewsClick}>
           {button}
           <span className="track-card__views">1979</span>
+          {/* <span className="track-card__views">{count}</span> */}
         </button>
       // </ClickNHold>
     );

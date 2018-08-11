@@ -97,6 +97,8 @@ export class TrackCard extends React.Component {
             liked={track.liked}
             disliked={track.disliked}
             viewsCount={track.viewsCount}
+            likesCount={track.likesCount}
+            dislikesCount={track.dislikesCount}
           />
 
           {/* <div className="view-more">
