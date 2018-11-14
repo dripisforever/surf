@@ -1,7 +1,9 @@
 import React from 'react';
 import '../styles/LikeButton.css';
+import  { connect } from 'react-redux';
 // import ClickNHold from 'react-click-n-hold';
 // import  ReactHoldButton from 'react-long-press';
+import {likeTrackAction} from '../../core/tracklists/actions';
 
 class LikeButton extends React.Component {
   constructor(props) {
@@ -27,6 +29,7 @@ class LikeButton extends React.Component {
   _likeClick(e) {
     e.preventDefault();
     console.log('LIKE')
+    this.props.onClick(this.props.track.id)
   }
 
   start(e) {
@@ -106,12 +109,19 @@ class LikeButton extends React.Component {
           onClick={this.likeClick}
           onDoubleClick={this.onReviewsClick}>
           {button}
-          <span className="track-card__views">1979</span>
           {/* <span className="track-card__views">{count}</span> */}
+          <span className="track-card__views">1979</span>
         </button>
       // </ClickNHold>
     );
   }
 }
 
-export default LikeButton;
+const mapStateToProps = (state) => ({
+  // tracks: state.tracks.get('tracks'),
+  error: state.tracks.get('error')
+});
+
+export default connect(
+  mapStateToProps, {likeTrackAction}
+)(LikeButton);

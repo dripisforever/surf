@@ -1,18 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-// import classNames from 'classnames';
 import { List } from 'immutable';
 import PropTypes from 'prop-types';
-// import { getBrowserMedia, infiniteScroll } from 'src/core/browser';
-// import { audio, getPlayerIsPlaying, getPlayerTrackId, playerActions } from 'src/core/player';
 import { getCurrentTracklist, getTracksForCurrentTracklist, tracklistActions } from '../../core/tracklists';
-
-// import LoadingIndicator from '../loading-indicator';
+import { likeTrackAction } from '../../core/tracklists/actions';
 import TrackCard from './TrackCard';
-
-// import './tracklist.css';
-
 
 export class Tracklist extends React.Component {
   static propTypes = {
@@ -21,16 +14,12 @@ export class Tracklist extends React.Component {
 
   renderTrackCards() {
     return this.props.tracks.map((track) => {
-      return <TrackCard key={track.id} track={track} body={track.body} highlight={track.highlight} />;
+      return <TrackCard key={track.id} track={track} body={track.body} onClick={this.props.likeTrackAction} highlight={track.highlight} />;
     });
   }
 
   render() {
     return (
-      // <div className="woess">
-      //
-      // </div>
-
       <div className="Results">
         {this.renderTrackCards()}
         <div>{this.props.isPending ? <h1>LOADING RESULTS</h1> : null}</div>
@@ -55,8 +44,8 @@ const mapStateToProps = createSelector(
 );
 
 const mapDispatchToProps = {
-  loadNextTracks: tracklistActions.loadNextTracks
-  // selectTrack: playerActions.playSelectedTrack
+  loadNextTracks: tracklistActions.loadNextTracks,
+  likeTrackAction
 };
 
 export default connect(

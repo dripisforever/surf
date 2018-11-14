@@ -1,11 +1,16 @@
 import { FEATURED_TRACKLIST_ID, FEATURED_TRACKLIST_USER_ID } from '../constants';
 
+export const LIKE_TRACK = 'LIKE_TRACK';
+export const LIKE_RESULT_TRACK = 'LIKE_RESULT_TRACK';
+
 
 export const tracklistActions = {
   FETCH_TRACKS_FAILED: 'FETCH_TRACKS_FAILED',
   FETCH_TRACKS_FULFILLED: 'FETCH_TRACKS_FULFILLED',
   FETCH_TRACKS_PENDING: 'FETCH_TRACKS_PENDING',
 
+  LIKE_TRACK: 'LIKE_TRACK',
+  LIKE_RESULT_TRACK: 'LIKE_RESULT_TRACK',
   LOAD_FEATURED_TRACKS: 'LOAD_FEATURED_TRACKS',
   LOAD_NEXT_TRACKS: 'LOAD_NEXT_TRACKS',
   MOUNT_TRACKLIST: 'MOUNT_TRACKLIST',
@@ -60,6 +65,19 @@ export const tracklistActions = {
   })
 };
 
+export const likeTrackAction = (track_id) => {
+  return{
+    type: tracklistActions.LIKE_TRACK,
+    data: track_id,
+  }
+};
+
+export const likeTrackResultAction = (track_id, count) => {
+  return{
+    type: tracklistActions.LIKE_RESULT_TRACK,
+    data: {track_id, count},
+  }
+};
 
 export const tracklistRequestActions = {
   failed: tracklistActions.fetchTracksFailed,

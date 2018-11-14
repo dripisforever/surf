@@ -2,6 +2,8 @@ import request from 'superagent';
 import { API_SEARCH_WEBSITES, API_MOVIES_URL, CLIENT_ID_PARAM, PAGINATION_PARAMS } from '../constants';
 // import { API_TRACKS_URL, CLIENT_ID_PARAM, PAGINATION_PARAMS } from '../constants';
 
+const getURL = (url) => 'http://localhost:5000/' + url;
+
 export const api = {
   fetch(url) {
     return dispatch({url});
@@ -16,7 +18,7 @@ export const api = {
       page: pageNum
     });
   },
-  //
+
   // fetchUser(username) {
   //   return dispatch({
   //     url: `${API_USERS_URL}/${username}/public_profile`
@@ -24,6 +26,19 @@ export const api = {
   // },
 };
 
+export const likeTrack = (eid, token) => {
+  return fetch(getURL(`api/websites/likes/${eid}`), {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  }).then(response => response.json())
+    .then(json => {
+      return json;
+    })
+    .catch(ex => console.log('parsing failed', ex));
+};
 
 export function dispatch(options) {
   return request[options.method || 'get'](requestUrl(options))

@@ -39,7 +39,7 @@ export class TrackCard extends React.Component {
     return (
       <div className="track-block">
         <div className="track-card__title">
-          <a className="track-card__title-link" href={`https://views.ly/${track.title}`}>
+          <a className="track-card__title-link" href={`https://views.dat/${track.url}`}>
           <span className="bra">{track.title}</span>
           {this.renderTitle}
           {/* <span>{website.title}</span> */}
@@ -88,6 +88,13 @@ export class TrackCard extends React.Component {
             <span className="track-card__views">{this.props.viewsCount}</span>
           </button> */}
           {/* <span className="track-card__views">1</span> */}
+          {/* {
+            this.props.tracks.sorf((a, b) => {
+
+            }).toList().map((entry) => {
+
+            })
+          } */}
 
           <LikeButton
             onLike={this.props.onLike}
@@ -95,6 +102,9 @@ export class TrackCard extends React.Component {
             onDislike={this.props.onDislike}
             onCancelDislike={this.props.onCancelDislike}
             liked={track.liked}
+            track={track}
+            onClick={this.props.onClick}
+            track={this.props.track}
             disliked={track.disliked}
             viewsCount={track.viewsCount}
             likesCount={track.likesCount}

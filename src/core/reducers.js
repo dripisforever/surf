@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 
 import { searchReducer } from './search';
 import { tracksReducer } from './tracks';
+// import { likesReducer } from './like';
 import { tracklistsReducer } from './tracklists';
 import {reducer as form} from 'redux-form';
 import { loginReducer } from './login/';
@@ -20,6 +21,7 @@ const appReducer = combineReducers({
   login: loginReducer,
   search: searchReducer,
   tracks: tracksReducer,
+  // likes: likesReducer,
   tracklists: tracklistsReducer,
 
   publicProfiles: publicProfiles
