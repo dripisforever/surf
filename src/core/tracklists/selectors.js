@@ -1,12 +1,13 @@
 import { createSelector } from 'reselect';
 import { TRACKS_PER_PAGE } from '../constants';
-import { getTracks } from '../tracks/selectors';
+// import { getTracks } from '../tracks/selectors';
 
 // export const getTracks = state => state.tracks;
 
 export function getTracklists(state) {
   return state.tracklists;
 }
+
 
 export function getTracklistById(state, tracklistId) {
   return getTracklists(state).get(tracklistId);
@@ -48,6 +49,9 @@ export const getCurrentTrackIds = createSelector(
   getCurrentTracklist,
   tracklist => tracklist.trackIds
 );
+
+
+export const getTracks = state => state.tracks;
 
 export const getTracksForCurrentTracklist = createSelector(
   getCurrentPage,

@@ -1,10 +1,11 @@
-import { call, fork, put, select, takeLatest, takeEvery } from 'redux-saga/effects';
+import { call, fork, put, select, takeLatest, takeEvery, take } from 'redux-saga/effects';
 import { fetchNextTracks } from '../api';
-import { tracklistActions, likeEntryResultAction } from './actions';
+import { tracklistActions, likeEntryResultAction, updateFieldsOfItem } from './actions';
 import { getCurrentTracklist } from './selectors';
 import { getTracks } from '../tracks/selectors';
-import { likeTrack } from '../api/api-service';
-import { LIKE_TRACK } from './actions';
+import { likeTrack, unlikeTrack } from '../api/api-service';
+import { LIKE_TRACK, UNLIKE_TRACK } from './actions';
+// import { likePhoto } from './';
 
 
 export function* loadNextTracks() {
@@ -17,19 +18,36 @@ export function* loadNextTracks() {
   }
 }
 
-export function* likeTrackAsync() {
-  const tracks = yield select(getTracks);
-  const track_id = tracks.get('track_id');
-  const token = localStorage.getItem('token');
-  const json = yield call(likeTrack, track_id, token);
-  if (json.success) {
-    console.log('likeEntryAsyncSuccess', json.data);
-    const count = json.data === 1 ? 1 : -1;
-    // yield put(likeEntryResultAction(eid, count));
-  } else {
-    console.log('likeEntryAsyncError', json.error);
+/**
+ * like photo flow
+ */
+export function* likePhotoF() {
+  while (true) {
+    const { id } = yield take(LIKE_TRACK);
+    const { response, error } = yield call(likeTrack, id);
+    if (response) {
+      //TODO: show feedback
+      yield put(tracklistActions.updateFieldsOfItem('photos', id, response.photo));
+    } else {
+      console.log("ERROR");
+      // yield fork(handleCommonErr, error, LIKE_PHOTO, { id });
+    }
   }
 }
+
+export function* unLikePhotoF() {
+  while (true) {
+    const { id } = yield take(UNLIKE_TRACK);
+    const { response, error } = yield call(unlikeTrack, id);
+    if (response) {
+      yield put(tracklistActions.updateFieldsOfItem('photos', id, response.photo));
+    } else {
+      console.log("ERROR");
+      // yield fork(handleCommonErr, error, UNLIKE_TRACK, { id });
+    }
+  }
+}
+
 
 
 //=====================================
@@ -38,7 +56,9 @@ export function* likeTrackAsync() {
 
 export function* watchLoadNextTracks() {
   yield [
-    takeEvery(tracklistActions.LIKE_TRACK, likeTrackAsync),
+    // takeEvery(tracklistActions.LIKE_TRACK, likeTrackAsync),
+    takeEvery(tracklistActions.LIKE_TRACK, likePhotoF),
+    takeEvery(tracklistActions.UNLIKE_TRACK, unLikePhotoF),
     takeLatest(tracklistActions.LOAD_NEXT_TRACKS, loadNextTracks)
 
   ];

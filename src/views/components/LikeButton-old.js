@@ -53,7 +53,14 @@ class LikeButton extends React.Component {
   render() {
     const defBtn = require(`./../images/black-mascot.png`);
     const likedBtn = require(`./../images/purple-mascot-pale.png`);
+    // const likedBtn = require(`./../images/aquarius-mascot.png`);
+    // const dislikedBtn = require(`./../images/heartbreak-mascot.png`);
     const dislikedBtn = require(`./../images/heartbreak-mascot-red.png`);
+
+    // const defBtn = require
+    // const likedBtn = require
+    // const dislikedBtn = require
+
     let button = null;
     let count = null;
 
@@ -67,16 +74,45 @@ class LikeButton extends React.Component {
       button = <img src={defBtn} className="LikeButton__icon LikeButton__icon--liked"/>
       count = <span className="track-card__views">{this.props.viewsCount}</span>
     }
-
+    // const vuseUrl = require(`./../images/red-mascot.png`);
+    // const vuseUrl = require(`./../images/purple-mascot.png`);
+    // const vuseUrl = require(`./../images/heartbreak-mascot.png`);
+    // const vuseUrl = require(`./../images/heartbreak-mascot-black.png`);
     return (
-      <div className="TEST">
+      // <ClickNHold
+      //   className="track-card__btn LikeButton__root"
+      //   onDoubleClick={this.onReviewsClick}
+      //   time={0.250}
+      //   onStart={this.start}
+      //   onClickNHold={this.clickNHold}
+      //   onEnd={this.end}
+      //   >
+      //<div className="hold-button">
+        // <LongPressBtn
+        //  ref={(btn) => this.holdButton = btn}
+        //  longPressStart={this.longPressStart}
+        //  longPressEnd={this.longPressEnd}
+        //  pressCallbackTimeout={2000}
+        // />
+      //</div>
+        // <button className="track-card__btn LikeButton__root"
+        //   onClick={this.likeClick}
+        //   onDoubleClick={this.onReviewsClick}>
+        //   {this.props.liked ?
+        //   // (<img src="../images/red-mascot.png" className="LikeButton__icon LikeButton__icon--liked"/>) :
+        //   (<img src={likedUrl} className="LikeButton__icon LikeButton__icon--liked"/>):
+        //   // (<i className="fa fa-heart-o LikeButton__icon"/>)}
+        //   (<img src={defUrl} className="LikeButton__icon LikeButton__icon--liked"/>)}
+        //   <span className="track-card__views">1979</span>
+        // </button>
         <button className="track-card__btn LikeButton__root"
           onClick={this.likeClick}
           onDoubleClick={this.onReviewsClick}>
           {button}
+          {/* <span className="track-card__views">{count}</span> */}
           <span className="track-card__views">1979</span>
         </button>
-      </div>
+      // </ClickNHold>
     );
   }
 }

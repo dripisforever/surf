@@ -31,6 +31,20 @@ export const likeTrack = (eid, token) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': `Token ${token}`
+    }
+  }).then(response => response.json())
+    .then(json => {
+      return json;
+    })
+    .catch(ex => console.log('parsing failed', ex));
+};
+
+export const unlikeTrack = (eid, token) => {
+  return fetch(getURL(`api/websites/likes/${eid}`), {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     }
   }).then(response => response.json())
